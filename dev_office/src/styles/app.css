@@ -1,0 +1,93 @@
+.app-shell {
+  font-family: "Inter", sans-serif;
+  background-color: #13121b;
+  color: #e4e1ee;
+}
+
+.app-shell h1,
+.app-shell h2,
+.app-shell h3,
+.app-shell h4,
+.app-shell .font-space {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.glass-card {
+  background: rgba(26, 34, 56, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.active-tab-glow {
+  box-shadow: 0 0 15px rgba(135, 129, 255, 0.3);
+}
+
+.scanline {
+  background: linear-gradient(to bottom, transparent 50%, rgba(196, 192, 255, 0.05) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #35343e;
+  border-radius: 10px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 24;
+}
+
+.nav-link-active {
+  scale: 0.98;
+  background-color: #8781ff;
+  color: #1b0091;
+  box-shadow: 0 0 15px rgba(135, 129, 255, 0.3);
+}
+
+.nav-link-inactive {
+  color: #c7c4d8;
+  transition: transform 0.2s ease;
+}
+
+.nav-link-inactive:hover {
+  transform: translateX(4px);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.auth-input {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75rem 1rem;
+  color: #e4e1ee;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.auth-input:focus {
+  border-color: rgba(196, 192, 255, 0.5);
+}
+
+.auth-input::placeholder {
+  color: #918fa1;
+}
+
+.company-card-selected {
+  border-color: #c4c0ff !important;
+  box-shadow: 0 0 20px rgba(196, 192, 255, 0.2);
+}
