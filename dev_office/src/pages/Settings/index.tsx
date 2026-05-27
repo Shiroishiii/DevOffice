@@ -4,7 +4,7 @@ import { AppPageShell } from '../../layouts/AppLayout'
 const Settings = () => {
   return (
     <AppPageShell header={<AppTopBar title="Configurações" />}>
-      <div className="mx-auto w-full max-w-[720px] space-y-6 p-6 md:p-12">
+      <div className="mx-auto w-full max-w-180 space-y-6 p-6 md:p-12">
         <div className="glass-panel rounded-2xl p-8">
           <h2 className="font-space mb-6 text-xl font-bold text-white">Conta</h2>
           <div className="space-y-4">
