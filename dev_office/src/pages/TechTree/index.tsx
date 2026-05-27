@@ -13,7 +13,7 @@ const skills = [
 const TechTree = () => {
   return (
     <AppPageShell header={<AppTopBar title="Árvore de Tech" />}>
-      <div className="mx-auto w-full max-w-[1280px] space-y-8 p-6 md:p-12">
+      <div className="mx-auto w-full max-w-7xl space-y-8 p-6 md:p-12">
         <div className="mb-4">
           <p className="text-[#c7c4d8]">Desbloqueie especializações completando missões e subindo de rank.</p>
         </div>

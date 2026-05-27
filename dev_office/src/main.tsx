@@ -14,6 +14,7 @@ import Settings from './pages/Settings'
 import TerminalPage from './pages/TerminalPage'
 import AppLayout from './layouts/AppLayout'
 import AuthLayout from './layouts/AuthLayout'
+import LearnPage from './pages/LearnPage'
 
 const router = createBrowserRouter([
   { path: '/', element: <Landing /> },
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: '/trilha-carreira', element: <CareerPath /> },
       { path: '/configuracoes', element: <Settings /> },
       { path: '/terminal', element: <TerminalPage /> },
+      { path: '/aprenda', element: <LearnPage /> },
       { path: '/command-center', element: <Navigate to="/centro-comando" replace /> },
       { path: '/mission-log', element: <Navigate to="/registro-missoes" replace /> },
     ],
