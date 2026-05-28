@@ -12,42 +12,53 @@ datasource db {
   provider = "postgresql"
 }
 
-enum EmpresaQuePertence {
-  
-  
-}
 
-enum Status{
+
+enum StatusTarefa {
   PENDENTE
   CONCLUIDO
 }
 
-model Usuario { 
-  id    Int     @id @default(autoincrement()) 
-  email String  @unique
-  nome  String?
-  senha String
+enum tipoConta {
+  Basico
+  Standard
+  Premium
+}
+
+model Usuario {
+  id     Int      @id @default(autoincrement())
+  email  String   @unique
+  nome   String?
+  senha  String
+  planos Planos[]
 
   @@map("usuario")
-} 
+}
 
 model Empresa {
-  id    Int      @id @default(autoincrement()) 
-  nome String?   
-  email String   @unique
-  telefone Int   @unique
-  CNPJ  Int      @unique
+  id       Int     @id @default(autoincrement())
+  nome     String?
+  email    String  @unique
+  telefone Int     @unique
+  CNPJ     Int     @unique
 
   @@map("empresa")
 }
 
 model Tarefa {
-  id  Int   @id   @default(autoincrement())
-  titulo    String
-  descricao String
-  data_vencimento   DateTime
-  status    Status  @default(PENDENTE)
-
+  id              Int          @id @default(autoincrement())
+  titulo          String
+  descricao       String
+  data_vencimento DateTime
+  status          StatusTarefa @default(PENDENTE)
 
   @@map("tarefa")
+}
+
+model Planos {
+  id         Int     @id @default(autoincrement())
+  usuario_id Int
+  usuario    Usuario @relation(fields: [usuario_id], references: [id])
+
+  @@map("planos")
 }
