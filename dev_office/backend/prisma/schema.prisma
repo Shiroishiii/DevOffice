@@ -12,35 +12,36 @@ datasource db {
   provider = "postgresql"
 }
 
-
-
 enum StatusTarefa {
   PENDENTE
   CONCLUIDO
 }
 
-enum tipoConta {
+enum TipoPlano {
   Basico
   Standard
   Premium
 }
 
 model Usuario {
-  id     Int      @id @default(autoincrement())
-  email  String   @unique
-  nome   String?
-  senha  String
-  planos Planos[]
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  nome      String?
+  senha     String
+  planos_id Int
+  planos    Planos    @relation(fields: [planos_id], references: [id])
+  empresas  Empresa[]
 
   @@map("usuario")
 }
 
 model Empresa {
-  id       Int     @id @default(autoincrement())
-  nome     String?
-  email    String  @unique
-  telefone Int     @unique
-  CNPJ     Int     @unique
+  id         Int     @id @default(autoincrement())
+  nome       String?
+  email      String  @unique
+  telefone   Int     @unique
+  usuario_id Int
+  usuario    Usuario @relation(fields: [usuario_id], references: [id])
 
   @@map("empresa")
 }
@@ -56,9 +57,9 @@ model Tarefa {
 }
 
 model Planos {
-  id         Int     @id @default(autoincrement())
-  usuario_id Int
-  usuario    Usuario @relation(fields: [usuario_id], references: [id])
+  id        Int       @id @default(autoincrement())
+  tipoPlano TipoPlano @default(Basico)
+  usuarios  Usuario[]
 
   @@map("planos")
 }

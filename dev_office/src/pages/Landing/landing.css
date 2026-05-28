@@ -1,0 +1,52 @@
+.landing-page {
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.landing-page h1,
+.landing-page h2,
+.landing-page h3,
+.landing-page h4,
+.landing-page .font-space {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.glass-card {
+  background: rgba(26, 34, 56, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.neon-glow-primary {
+  box-shadow: 0 0 20px rgba(196, 192, 255, 0.15);
+}
+
+.neon-border-hover:hover {
+  border-color: #c4c0ff;
+  box-shadow: 0 0 15px rgba(196, 192, 255, 0.3);
+}
+
+.scanline {
+  background: linear-gradient(to bottom, transparent 50%, rgba(196, 192, 255, 0.05) 50%);
+  background-size: 100% 4px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 24;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
