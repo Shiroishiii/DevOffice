@@ -6,3 +6,6 @@ const connectionString = `postgresql://postgres:senai@localhost:5432/clinic?sche
 const adapter = new PrismaPg({ connectionString });
 export const prisma = new PrismaClient({ adapter, log: ['query'] });
 //  sim
+
+
+// ajbhbahvbsvh
