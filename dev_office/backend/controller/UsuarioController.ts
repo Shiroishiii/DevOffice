@@ -1,20 +1,17 @@
 import { Request, Response } from "express";
-import {usuarioService, type UsuarioService } from "../services/UsuarioServices";
+import { type UsuarioService, usuarioService } from "../services/UsuarioServices";
 
 export class UsuarioController {
-    constructor(private usuarioService: UsuarioService) { }
-
+    constructor(private readonly usuarioService: UsuarioService) {}
 
     listarUsuarios = async (req: Request, res: Response) => {
         try {
-            const usuarios = await usuarioService.listarUsuarios();
-
+            const usuarios = await this.usuarioService.listarUsuarios();
             return res.status(200).json(usuarios);
         } catch (error) {
             console.log(error);
-
-            return res.status(400).json({
-                error: String(error)
+            return res.status(404).json({
+                error
             });
         }
     }
@@ -23,15 +20,26 @@ export class UsuarioController {
         try {
             const id = Number(req.params.id);
 
-            const usuario = await usuarioService.getUsuarioId(id);
+            const usuario = await this.usuarioService.getUsuarioId(id);
 
             return res.status(200).json(usuario);
         } catch (error) {
             console.log(error);
-
-            return res.status(400).json({
-                error: String(error)
+            return res.status(404).json({
+                error
             });
+        }
+    }
+    getUsuarioEmail = async (req: Request, res: Response) =>{
+        try{
+            const email = String((req.params.id))
+            const usuario = await this.usuarioService.getUsuarioEmail(email)
+            return res.status(200).json(usuario)
+        }   catch (error) {
+            console.log(error);
+            return res.status(404).json({
+                error
+            })
         }
     }
 
@@ -39,14 +47,13 @@ export class UsuarioController {
         try {
             const dadosUsuario = req.body;
 
-            const usuario = await usuarioService.criarUsuario(dadosUsuario);
+            const usuario = await this.usuarioService.criarUsuario(dadosUsuario);
 
             return res.status(201).json(usuario);
         } catch (error) {
             console.log(error);
-
-            return res.status(400).json({
-                error: String(error)
+            return res.status(404).json({
+                error
             });
         }
     }
@@ -55,7 +62,7 @@ export class UsuarioController {
         try {
             const id = Number(req.params.id);
 
-            const usuario = await usuarioService.atualizarUsuario(
+            const usuario = await this.usuarioService.atualizarUsuario(
                 id,
                 req.body
             );
@@ -63,9 +70,8 @@ export class UsuarioController {
             return res.status(200).json(usuario);
         } catch (error) {
             console.log(error);
-
-            return res.status(400).json({
-                error: String(error)
+            return res.status(404).json({
+                error
             });
         }
     }
@@ -74,14 +80,13 @@ export class UsuarioController {
         try {
             const id = Number(req.params.id);
 
-            const usuario = await usuarioService.deletarUsuario(id);
+            const usuario = await this.usuarioService.deletarUsuario(id);
 
             return res.status(200).json(usuario);
         } catch (error) {
             console.log(error);
-
-            return res.status(400).json({
-                error: String(error)
+            return res.status(404).json({
+                error
             });
         }
     }
