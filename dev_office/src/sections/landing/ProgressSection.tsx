@@ -1,13 +1,13 @@
 const ProgressSection = () => {
   return (
     <section className="overflow-hidden bg-[#13121b] px-5 py-24 md:px-16">
-      <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-16 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <div className="relative order-2 lg:order-1">
           <div className="absolute -inset-10 rounded-full bg-[#c4c0ff]/10 blur-[100px]" />
           <div className="glass-card relative overflow-hidden rounded-2xl border border-white/5 p-6">
             <div className="mb-8 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#c4c0ff] to-[#a2e7ff] font-bold text-[#2000a4]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-[#c4c0ff] to-[#a2e7ff] font-bold text-[#2000a4]">
                   LV42
                 </div>
                 <div>

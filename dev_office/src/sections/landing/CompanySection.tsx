@@ -43,7 +43,7 @@ const companies = [
 const CompanySection = () => {
   return (
     <section className="border-y border-white/5 bg-[#0e0d16] px-5 py-24 md:px-16">
-      <div className="mx-auto max-w-[1280px]">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col items-end justify-between gap-6 md:flex-row">
           <div>
             <h2 className="font-space mb-4 text-4xl font-semibold text-white md:text-5xl">Centrais de Missão</h2>
