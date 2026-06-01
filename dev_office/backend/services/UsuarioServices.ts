@@ -1,26 +1,29 @@
 import { usuarioRepository, type UsuarioRepository } from "../repositories/UsuarioRepository";
 
 export class UsuarioService {
-  constructor(private userRepository: UsuarioRepository) {}
+  constructor(private usuarioRepository: UsuarioRepository) {}
 
   async listarUsuarios() {
-    return this.userRepository.listarUsuarios();
+    return this.usuarioRepository.listarUsuarios();
   }
 
   async getUsuarioId(id: number) {
-    return this.userRepository.getUsuarioId(id);
+    return this.usuarioRepository.getUsuarioId(id);
+  }
+  async getUsuarioEmail(email: string){
+    return this.usuarioRepository.getUsuarioEmail(email)
   }
 
   async criarUsuario(dadosUsuario: any) {
-    return this.userRepository.criarUsuario(dadosUsuario);
+    return this.usuarioRepository.criarUsuario(dadosUsuario);
   }
 
   async atualizarUsuario(id: number, data: any) {
-    return this.userRepository.atualizarUsuario(id, data);
+    return this.usuarioRepository.atualizarUsuario(id, data);
   }
 
   async deletarUsuario(id: number) {
-    return this.userRepository.deletarUsuario(id);
+    return this.usuarioRepository.deletarUsuario(id);
   }
 }
 

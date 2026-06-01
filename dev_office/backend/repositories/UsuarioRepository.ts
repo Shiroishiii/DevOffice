@@ -18,6 +18,14 @@ export class UsuarioRepository {
       }
     });
   }
+  
+  async getUsuarioEmail(email: string): Promise<Usuario | null> {
+    return this.prisma.usuario.findUnique({
+      where: {
+        email,
+      },
+    });
+  }
 
    async listarUsuarios(): Promise<Usuario[]> {
     return this.prisma.usuario.findMany();
