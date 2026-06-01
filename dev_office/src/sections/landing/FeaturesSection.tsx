@@ -28,7 +28,7 @@ const features = [
 const FeaturesSection = () => {
   return (
     <section className="bg-[#0e0d16] px-5 py-24 md:px-16">
-      <div className="mx-auto max-w-[1280px]">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
           <h2 className="font-space mb-4 text-4xl font-semibold text-white md:text-5xl">A Forja do Desenvolvedor Moderno</h2>
           <p className="mx-auto max-w-2xl text-[#c7c4d8]">

@@ -24,7 +24,6 @@ const Register = () => {
             className="auth-input"
             id="nome"
             onChange={(e) => setNome(e.target.value)}
-            placeholder="Seu nome"
             type="text"
             value={nome}
           />
@@ -37,7 +36,6 @@ const Register = () => {
             className="auth-input"
             id="email"
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="voce@empresa.com"
             type="email"
             value={email}
           />
@@ -51,7 +49,6 @@ const Register = () => {
             id="senha"
             minLength={6}
             onChange={(e) => setSenha(e.target.value)}
-            placeholder="Mínimo 6 caracteres"
             type="password"
             value={senha}
           />
@@ -73,7 +70,7 @@ const Register = () => {
         </div>
         {canSubmit ? (
           <NavLink
-            className="block w-full rounded-lg bg-gradient-to-r from-[#c4c0ff] to-[#d0bcff] py-3 text-center text-sm font-bold uppercase tracking-widest text-[#2000a4] transition-all hover:shadow-[0_0_20px_rgba(196,192,255,0.4)]"
+            className="block w-full rounded-lg bg-linear-to-r from-[#c4c0ff] to-[#d0bcff] py-3 text-center text-sm font-bold uppercase tracking-widest text-[#2000a4] transition-all hover:shadow-[0_0_20px_rgba(196,192,255,0.4)]"
             to="/centro-comando"
           >
             Finalizar Cadastro

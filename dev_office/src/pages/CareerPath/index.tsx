@@ -15,7 +15,7 @@ const CareerPath = () => {
       <div className="mx-auto w-full max-w-7xl space-y-8 p-6 md:p-12">
         <p className="text-[#c7c4d8]">Acompanhe sua evolução profissional dentro do ecossistema DevOffice.</p>
         <div className="glass-panel relative overflow-hidden rounded-2xl p-8">
-          <div className="absolute top-8 bottom-8 left-6.75 w-0.5 bg-gradient-to-b from-[#c4c0ff] to-transparent opacity-30" />
+          <div className="absolute top-8 bottom-8 left-6.75 w-0.5 bg-linear-to-b from-[#c4c0ff] to-transparent opacity-30" />
           <div className="space-y-8">
             {milestones.map((item) => (
               <div key={item.rank} className="relative flex gap-6">

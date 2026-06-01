@@ -5,7 +5,7 @@ import { AppPageShell } from '../../layouts/AppLayout'
 const Profile = () => {
   return (
     <AppPageShell header={<AppTopBar title="Perfil do Operador" />}>
-      <div className="mx-auto w-full max-w-[1280px] space-y-8 p-6 md:p-12">
+      <div className="mx-auto w-full max-w-7xl space-y-8 p-6 md:p-12">
         <div className="glass-panel rounded-2xl p-8">
           <div className="flex flex-col items-start gap-8 md:flex-row md:items-center">
             <div className="h-28 w-28 overflow-hidden rounded-2xl border border-[#c4c0ff]/30">
