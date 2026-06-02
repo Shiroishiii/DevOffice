@@ -48,12 +48,35 @@ model Empresa {
 
 model Tarefa {
   id              Int          @id @default(autoincrement())
+
   titulo          String
   descricao       String
-  data_vencimento DateTime
+
+  funcaoEsperada  String
+
+  codigoBase      String       @db.Text
+
+  xp              Int          @default(50)
+
+  testes          Teste[]
+
+  dataVencimento  DateTime
+
   status          StatusTarefa @default(PENDENTE)
 
   @@map("tarefa")
+}
+
+model Teste {
+  id        Int  @id @default(autoincrement())
+
+  entrada   Json
+  esperado  Json
+
+  tarefaId  Int
+  tarefa    Tarefa @relation(fields: [tarefaId], references: [id])
+
+  @@map("teste")
 }
 
 model Planos {
