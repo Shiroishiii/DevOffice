@@ -21,7 +21,7 @@ const MissionListSection = ({
     activeFilter === 'Todos' ? missions : missions.filter((m) => m.category === activeFilter)
 
   return (
-    <div className="flex h-full w-full flex-col gap-6 lg:w-[400px]">
+    <div className="flex h-full w-full flex-col gap-6 lg:w-100">
       <MissionFilters activeFilter={activeFilter} onFilterChange={onFilterChange} />
       <div className="custom-scrollbar flex flex-1 flex-col gap-4 overflow-y-auto pr-2">
         {filtered.map((mission) => (
