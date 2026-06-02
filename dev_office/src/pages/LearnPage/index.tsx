@@ -44,7 +44,6 @@ const TechTree = () => {
             <div>
                 <div className="min-h-screen bg-[#0b0b1f] p-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
                         {aulas.map((aula) => (
                             <a
                                 key={aula.id}
@@ -68,16 +67,13 @@ const TechTree = () => {
                                     alt={aula.titulo}
                                     className="w-full h-52 object-cover"
                                 />
-
                                 <div className="p-6 flex flex-col gap-4">
                                     <h2 className="text-2xl font-bold text-white">
                                         {aula.titulo}
                                     </h2>
-
                                     <p className="text-zinc-400 text-sm leading-relaxed">
                                         {aula.descricao}
                                     </p>
-
                                     <button
                                         className="
               mt-4
@@ -95,7 +91,6 @@ const TechTree = () => {
                                 </div>
                             </a>
                         ))}
-
                     </div>
                 </div>
             </div>

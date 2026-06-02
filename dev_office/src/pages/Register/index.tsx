@@ -24,7 +24,6 @@ const Register = () => {
             className="auth-input"
             id="nome"
             onChange={(e) => setNome(e.target.value)}
-            placeholder="Seu nome"
             type="text"
             value={nome}
           />
@@ -37,7 +36,6 @@ const Register = () => {
             className="auth-input"
             id="email"
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="voce@empresa.com"
             type="email"
             value={email}
           />
@@ -51,7 +49,6 @@ const Register = () => {
             id="senha"
             minLength={6}
             onChange={(e) => setSenha(e.target.value)}
-            placeholder="Mínimo 6 caracteres"
             type="password"
             value={senha}
           />
