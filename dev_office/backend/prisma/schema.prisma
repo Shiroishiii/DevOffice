@@ -23,27 +23,26 @@ enum TipoPlano {
   Premium
 }
 
-model Usuario {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
-  nome      String?
-  senha     String
-  planos_id Int
-  planos    Planos    @relation(fields: [planos_id], references: [id])
-  empresas  Empresa[]
-
-  @@map("usuario")
+enum EmpresasExistentes {
+HardCode
+gamingColdest
+GreeCode
 }
 
-model Empresa {
-  id         Int     @id @default(autoincrement())
-  nome       String?
-  email      String  @unique
-  telefone   Int     @unique
-  usuario_id Int
-  usuario    Usuario @relation(fields: [usuario_id], references: [id])
 
-  @@map("empresa")
+
+model Usuario {
+  id        Int                 @id @default(autoincrement())
+  email     String              @unique
+  nome      String?
+  senha     String
+
+  planos_id Int
+  planos    Planos              @relation(fields: [planos_id], references: [id])
+
+  empresa   EmpresasExistentes
+
+  @@map("usuario")
 }
 
 model Tarefa {
