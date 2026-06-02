@@ -387,6 +387,7 @@ export const ModelName = {
   Usuario: 'Usuario',
   Empresa: 'Empresa',
   Tarefa: 'Tarefa',
+  Teste: 'Teste',
   Planos: 'Planos'
 } as const
 
@@ -403,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "empresa" | "tarefa" | "planos"
+    modelProps: "usuario" | "empresa" | "tarefa" | "teste" | "planos"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -629,6 +630,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Teste: {
+      payload: Prisma.$TestePayload<ExtArgs>
+      fields: Prisma.TesteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TesteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TesteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>
+        }
+        findFirst: {
+          args: Prisma.TesteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TesteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>
+        }
+        findMany: {
+          args: Prisma.TesteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>[]
+        }
+        create: {
+          args: Prisma.TesteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>
+        }
+        createMany: {
+          args: Prisma.TesteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TesteCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>[]
+        }
+        delete: {
+          args: Prisma.TesteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>
+        }
+        update: {
+          args: Prisma.TesteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>
+        }
+        deleteMany: {
+          args: Prisma.TesteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TesteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TesteUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>[]
+        }
+        upsert: {
+          args: Prisma.TesteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestePayload>
+        }
+        aggregate: {
+          args: Prisma.TesteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTeste>
+        }
+        groupBy: {
+          args: Prisma.TesteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TesteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TesteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TesteCountAggregateOutputType> | number
+        }
+      }
+    }
     Planos: {
       payload: Prisma.$PlanosPayload<ExtArgs>
       fields: Prisma.PlanosFieldRefs
@@ -768,11 +843,24 @@ export const TarefaScalarFieldEnum = {
   id: 'id',
   titulo: 'titulo',
   descricao: 'descricao',
-  data_vencimento: 'data_vencimento',
+  funcaoEsperada: 'funcaoEsperada',
+  codigoBase: 'codigoBase',
+  xp: 'xp',
+  dataVencimento: 'dataVencimento',
   status: 'status'
 } as const
 
 export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof TarefaScalarFieldEnum]
+
+
+export const TesteScalarFieldEnum = {
+  id: 'id',
+  entrada: 'entrada',
+  esperado: 'esperado',
+  tarefaId: 'tarefaId'
+} as const
+
+export type TesteScalarFieldEnum = (typeof TesteScalarFieldEnum)[keyof typeof TesteScalarFieldEnum]
 
 
 export const PlanosScalarFieldEnum = {
@@ -791,6 +879,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -805,6 +900,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -866,6 +970,20 @@ export type EnumStatusTarefaFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'StatusTarefa[]'
  */
 export type ListEnumStatusTarefaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusTarefa[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -1009,6 +1127,7 @@ export type GlobalOmitConfig = {
   usuario?: Prisma.UsuarioOmit
   empresa?: Prisma.EmpresaOmit
   tarefa?: Prisma.TarefaOmit
+  teste?: Prisma.TesteOmit
   planos?: Prisma.PlanosOmit
 }
 

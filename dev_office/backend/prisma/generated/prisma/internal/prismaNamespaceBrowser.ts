@@ -54,6 +54,7 @@ export const ModelName = {
   Usuario: 'Usuario',
   Empresa: 'Empresa',
   Tarefa: 'Tarefa',
+  Teste: 'Teste',
   Planos: 'Planos'
 } as const
 
@@ -99,11 +100,24 @@ export const TarefaScalarFieldEnum = {
   id: 'id',
   titulo: 'titulo',
   descricao: 'descricao',
-  data_vencimento: 'data_vencimento',
+  funcaoEsperada: 'funcaoEsperada',
+  codigoBase: 'codigoBase',
+  xp: 'xp',
+  dataVencimento: 'dataVencimento',
   status: 'status'
 } as const
 
 export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof TarefaScalarFieldEnum]
+
+
+export const TesteScalarFieldEnum = {
+  id: 'id',
+  entrada: 'entrada',
+  esperado: 'esperado',
+  tarefaId: 'tarefaId'
+} as const
+
+export type TesteScalarFieldEnum = (typeof TesteScalarFieldEnum)[keyof typeof TesteScalarFieldEnum]
 
 
 export const PlanosScalarFieldEnum = {
@@ -122,6 +136,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -136,4 +157,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

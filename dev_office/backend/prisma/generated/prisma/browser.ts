@@ -33,6 +33,11 @@ export type Empresa = Prisma.EmpresaModel
  */
 export type Tarefa = Prisma.TarefaModel
 /**
+ * Model Teste
+ * 
+ */
+export type Teste = Prisma.TesteModel
+/**
  * Model Planos
  * 
  */

@@ -4,6 +4,24 @@ import { type UsuarioService, usuarioService } from "../services/UsuarioServices
 export class UsuarioController {
     constructor(private readonly usuarioService: UsuarioService) {}
 
+    escolherPlano = async (req: Request, res: Response) => {
+  try {
+    const usuarioId = Number(req.params.id);
+    const planoId = Number(req.body.planoId);
+
+    const usuario = await this.usuarioService.escolherPlano(
+      usuarioId,
+      planoId
+    );
+
+    return res.status(200).json(usuario);
+  } catch (error) {
+    return res.status(400).json({
+      error: String(error)
+    });
+  }
+};
+
     listarUsuarios = async (req: Request, res: Response) => {
         try {
             const usuarios = await this.usuarioService.listarUsuarios();

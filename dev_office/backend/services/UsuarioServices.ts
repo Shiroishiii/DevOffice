@@ -3,6 +3,13 @@ import { usuarioRepository, type UsuarioRepository } from "../repositories/Usuar
 export class UsuarioService {
   constructor(private usuarioRepository: UsuarioRepository) {}
 
+    async escolherPlano(usuarioId: number, planoId: number) {
+    return await this.usuarioRepository.escolherPlano(
+      usuarioId,
+      planoId
+    );
+  }
+
   async listarUsuarios() {
     return this.usuarioRepository.listarUsuarios();
   }
@@ -15,6 +22,7 @@ export class UsuarioService {
   }
 
   async criarUsuario(dadosUsuario: any) {
+    
     return this.usuarioRepository.criarUsuario(dadosUsuario);
   }
 
