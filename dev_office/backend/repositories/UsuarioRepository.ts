@@ -7,7 +7,17 @@ export class UsuarioRepository {
     constructor(private readonly prisma: PrismaClient) {
     this.prisma = prisma;
   }
-
+     async escolherPlano(usuarioId: number, planoId: number) {
+    return await this.prisma.usuario.update({
+      where: {
+        id: usuarioId
+      },
+      data: {
+        planos_id: planoId
+      }
+    });
+  }
+  
     async getUsuarioId(id: number) {
     return this.prisma.usuario.findUnique({
       where: {
@@ -32,7 +42,9 @@ export class UsuarioRepository {
   }
 
     async criarUsuario(dadosUsuario: Partial<Usuario>) {
+      console.log(dadosUsuario);
     return await this.prisma.usuario.create({
+      
       data: dadosUsuario as Usuario
     });
   }
