@@ -1,4 +1,3 @@
-import TacticalChecklist from '../../components/mission-log/TacticalChecklist'
 import CodeTerminal from '../../components/mission-log/CodeTerminal'
 
 const MissionDetailSection = () => {
@@ -72,8 +71,7 @@ const MissionDetailSection = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-1 overflow-hidden">
-        <TacticalChecklist />
+      <div className="flex flex-1 min-w-0 overflow-hidden">
         <CodeTerminal />
       </div>
     </div>

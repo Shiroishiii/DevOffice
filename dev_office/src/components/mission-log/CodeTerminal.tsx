@@ -1,96 +1,184 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
+import Editor, { useMonaco } from '@monaco-editor/react'
+import '@fontsource/jetbrains-mono'
 
-const CodeTerminal = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
+export default function CodeTerminal() {
+  const [code, setCode] = useState(``)
+
+  const [output, setOutput] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const monaco = useMonaco()
 
   useEffect(() => {
-    const lines = containerRef.current?.querySelectorAll<HTMLElement>('.terminal-line')
-    if (!lines) return
+    if (!monaco) return
 
-    lines.forEach((line, index) => {
-      window.setTimeout(() => {
-        line.classList.add('terminal-line--visible')
-      }, 100 * index)
+    monaco.editor.defineTheme('devoffice', {
+      base: 'vs-dark',
+      inherit: true,
+
+      rules: [
+        {
+          token: 'keyword',
+          foreground: 'C4C0FF'
+        },
+        {
+          token: 'string',
+          foreground: 'A2E7FF'
+        },
+        {
+          token: 'comment',
+          foreground: '6F6B8A'
+        },
+        {
+          token: 'number',
+          foreground: 'FFB4AB'
+        },
+        {
+          token: 'type',
+          foreground: '8781FF'
+        }
+      ],
+
+      colors: {
+        'editor.background': '#0E0D16',
+
+        'editor.foreground': '#FFFFFF',
+
+        'editorLineNumber.foreground': '#5E5A75',
+
+        'editorLineNumber.activeForeground': '#C4C0FF',
+
+        'editorCursor.foreground': '#C4C0FF',
+
+        'editor.selectionBackground': '#8781FF33',
+
+        'editor.lineHighlightBackground': '#FFFFFF08',
+
+        'editorIndentGuide.background1': '#2B2840',
+
+        'editorIndentGuide.activeBackground1': '#8781FF',
+
+        'editorSuggestWidget.background': '#13121B',
+
+        'editorSuggestWidget.border': '#2B2840',
+
+        'editorHoverWidget.background': '#13121B',
+
+        'editorHoverWidget.border': '#2B2840'
+      }
     })
-  }, [])
+
+    monaco.editor.setTheme('devoffice')
+  }, [monaco])
+
+
+  async function executeCode() {
+    try {
+      setLoading(true)
+      setOutput('Executando...')
+
+      const response = await fetch('http://localhost:3000/api/execute', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          language: 'typescript',
+          code,
+        }),
+      })
+
+      const result = await response.json()
+
+      setOutput(result.output || 'Sem saída')
+    } catch (error) {
+      setOutput(`Erro: ${error}`)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
-    <div className="group relative flex-1 bg-[#0e0d16] p-6">
-      <div className="terminal-header flex h-8 items-center gap-2 rounded-t-lg px-4">
-        <div className="h-2.5 w-2.5 rounded-full bg-[#ffb4ab] opacity-70" />
-        <div className="h-2.5 w-2.5 rounded-full bg-[#00d2fd] opacity-70" />
-        <div className="h-2.5 w-2.5 rounded-full bg-[#c4c0ff] opacity-70" />
-        <span className="ml-4 text-[10px] font-bold uppercase tracking-widest text-[#c7c4d8] opacity-50">
-          terminal-devoffice — missions/apex_auth.ts
-        </span>
-      </div>
-      <div
-        ref={containerRef}
-        className="relative h-full overflow-hidden rounded-b-lg border border-white/5 bg-[#13121b]/80 p-4 font-mono text-[14px] text-[#a2e7ff]/80"
-      >
-        <div className="terminal-line flex">
-          <span className="w-12 pr-4 text-right text-[#c7c4d8]/40 select-none">104</span>
-          <span>
-            <span className="text-[#c4c0ff]">async function</span> <span className="text-[#a2e7ff]">initEncryption</span>
-            () {'{'}
-          </span>
+    <div className="flex-1 overflow-hidden p-4">
+      <div className="grid h-full grid-rows-[1fr_180px] gap-4">
+
+        {/* Editor */}
+        <div className="overflow-hidden rounded-xl border border-white/10">
+          <Editor
+            height="100%"
+            width="100%"
+            language="typescript"
+            theme="devoffice"
+            value={code}
+            onChange={(value) => setCode(value || '')}
+            options={{
+              automaticLayout: true,
+              minimap: { enabled: false },
+              fontSize: 16,
+              scrollBeyondLastLine: false,
+              fontFamily: 'JetBrains Mono',
+              fontLigatures: true,
+              cursorBlinking: 'phase',
+              smoothScrolling: true,
+              cursorSmoothCaretAnimation: 'on'
+            }}
+          />
         </div>
-        <div className="terminal-line flex">
-          <span className="w-12 pr-4 text-right text-[#c7c4d8]/40 select-none">105</span>
-          <span className="pl-4">
-            {' '}
-            const <span className="text-[#a2e7ff]">key</span> = <span className="text-[#c4c0ff]">await</span>{' '}
-            fetchQuantumKey();
-          </span>
-        </div>
-        <div className="terminal-line flex">
-          <span className="w-12 pr-4 text-right text-[#c7c4d8]/40 select-none">106</span>
-          <span className="pl-4 text-[#c7c4d8]"> // FIXME: Legacy overhead is slowing down auth</span>
-        </div>
-        <div className="terminal-line flex bg-[#c4c0ff]/10">
-          <span className="w-12 pr-4 text-right font-bold text-[#c4c0ff] select-none">107</span>
-          <span className="pl-4">
-            {' '}
-            <span className="text-[#c4c0ff]">const</span> result ={' '}
-            <span className="text-[#d0bcff]">ApexAuth.legacyLoop</span>(key);
-          </span>
-        </div>
-        <div className="terminal-line flex">
-          <span className="w-12 pr-4 text-right text-[#c7c4d8]/40 select-none">108</span>
-          <span className="pl-4">
-            {' '}
-            <span className="text-[#c4c0ff]">return</span> result;
-          </span>
-        </div>
-        <div className="terminal-line flex">
-          <span className="w-12 pr-4 text-right text-[#c7c4d8]/40 select-none">109</span>
-          <span>{'}'}</span>
-        </div>
-        <div className="terminal-line mt-8">
-          <div className="mb-2 text-[12px] opacity-40">EXECUTANDO ANÁLISE...</div>
-          <div className="flex gap-1">
-            <div className="h-1 flex-1 rounded bg-[#c4c0ff]/40" />
-            <div className="h-1 flex-1 rounded bg-[#c4c0ff]/40" />
-            <div className="h-1 flex-1 rounded bg-white/10" />
-            <div className="h-1 flex-1 rounded bg-white/10" />
-            <div className="h-1 flex-1 rounded bg-white/10" />
+
+        {/* Bottom */}
+        <div className="grid grid-cols-[1fr_220px] gap-4">
+
+          {/* Output */}
+          <div className="rounded-xl border border-white/10 bg-[#05050a] p-4">
+            <div className="mb-3 flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full bg-green-400" />
+              <span className="text-xs font-bold uppercase tracking-widest text-green-400">
+                Output
+              </span>
+            </div>
+
+            <pre className="h-full overflow-auto whitespace-pre-wrap font-mono text-sm text-green-400">
+              {output}
+            </pre>
           </div>
-          <div className="mt-2 text-[11px] font-bold uppercase tracking-widest text-[#c4c0ff]">
-            AMEAÇA: BAIXA | PERFORMANCE: DEGRADADA
+
+          {/* Execute */}
+          <div className="flex flex-col justify-between rounded-xl border border-white/10 bg-[#11111b] p-4">
+
+            <div>
+              <div className="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#c4c0ff]">
+                Status
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div
+                  className={`h-2 w-2 rounded-full ${loading ? 'bg-yellow-400' : 'bg-green-400'
+                    }`}
+                />
+
+                <span className="text-sm">
+                  {loading ? 'Executando...' : 'Pronto'}
+                </span>
+              </div>
+            </div>
+
+            <button
+              onClick={executeCode}
+              disabled={loading}
+              className="flex items-center justify-center gap-3 rounded-xl bg-[#c4c0ff] px-6 py-4 text-sm font-bold uppercase tracking-widest text-[#2000a4] shadow-[0_0_30px_rgba(196,192,255,0.25)] transition hover:scale-105"
+            >
+              <span className="material-symbols-outlined">
+                rocket_launch
+              </span>
+
+              Executar
+            </button>
           </div>
+
         </div>
-        <div className="absolute right-12 bottom-12 transition-transform duration-300 group-hover:-translate-y-1">
-          <button
-            className="flex items-center gap-3 rounded-xl bg-[#c4c0ff] px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-[#2000a4] shadow-[0_10px_30px_rgba(196,192,255,0.3)]"
-            type="button"
-          >
-            <span className="material-symbols-outlined text-[20px]">rocket_launch</span>
-            Confirmar Resolução
-          </button>
-        </div>
+
       </div>
     </div>
   )
 }
-
-export default CodeTerminal
