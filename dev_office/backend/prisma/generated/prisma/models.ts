@@ -11,5 +11,6 @@
 export type * from './models/Usuario'
 export type * from './models/Empresa'
 export type * from './models/Tarefa'
+export type * from './models/Teste'
 export type * from './models/Planos'
 export type * from './commonInputTypes'

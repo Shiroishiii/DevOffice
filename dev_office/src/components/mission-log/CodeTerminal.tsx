@@ -3,7 +3,9 @@ import Editor, { useMonaco } from '@monaco-editor/react'
 import '@fontsource/jetbrains-mono'
 
 export default function CodeTerminal() {
-  const [code, setCode] = useState(``)
+  const [code, setCode] = useState(`function isEven(num) {
+
+}`)
 
   const [output, setOutput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -84,7 +86,7 @@ export default function CodeTerminal() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          language: 'typescript',
+          language: 'javascript',
           code,
         }),
       })
@@ -125,10 +127,8 @@ export default function CodeTerminal() {
             }}
           />
         </div>
-
         {/* Bottom */}
         <div className="grid grid-cols-[1fr_220px] gap-4">
-
           {/* Output */}
           <div className="rounded-xl border border-white/10 bg-[#05050a] p-4">
             <div className="mb-3 flex items-center gap-2">
@@ -137,26 +137,21 @@ export default function CodeTerminal() {
                 Output
               </span>
             </div>
-
             <pre className="h-full overflow-auto whitespace-pre-wrap font-mono text-sm text-green-400">
               {output}
             </pre>
           </div>
-
           {/* Execute */}
           <div className="flex flex-col justify-between rounded-xl border border-white/10 bg-[#11111b] p-4">
-
             <div>
               <div className="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#c4c0ff]">
                 Status
               </div>
-
               <div className="flex items-center gap-2">
                 <div
                   className={`h-2 w-2 rounded-full ${loading ? 'bg-yellow-400' : 'bg-green-400'
                     }`}
                 />
-
                 <span className="text-sm">
                   {loading ? 'Executando...' : 'Pronto'}
                 </span>
