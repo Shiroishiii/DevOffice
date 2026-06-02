@@ -28,8 +28,8 @@ model Usuario {
   email     String    @unique
   nome      String?
   senha     String
-  planos_id Int
-  planos    Planos    @relation(fields: [planos_id], references: [id])
+  planos_id Int?
+  planos    Planos?   @relation(fields: [planos_id], references: [id])
   empresas  Empresa[]
 
   @@map("usuario")
