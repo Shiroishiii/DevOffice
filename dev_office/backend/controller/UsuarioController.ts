@@ -61,20 +61,23 @@ export class UsuarioController {
         }
     }
 
-    criarUsuario = async (req: Request, res: Response) => {
-        try {
-            const dadosUsuario = req.body;
+   criarUsuario = async (req: Request, res: Response) => {
+    try {
+        const dadosUsuario = req.body;
 
-            const usuario = await this.usuarioService.criarUsuario(dadosUsuario);
+        const usuario = await this.usuarioService.criarUsuario(dadosUsuario);
 
-            return res.status(201).json(usuario);
-        } catch (error) {
-            console.log(error);
-            return res.status(404).json({
-                error
-            });
-        }
+        return res.status(201).json(usuario);
+    } catch (error: any) {
+        console.error("ERRO COMPLETO:");
+        console.error(error);
+
+        return res.status(500).json({
+            message: error.message,
+            error
+        });
     }
+}
 
     atualizarUsuario = async (req: Request, res: Response) => {
         try {
