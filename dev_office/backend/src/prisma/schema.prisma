@@ -13,10 +13,8 @@ model Usuario {
   nome      String
   senha     String
   ponto      Int                @default(0)
-
   planos_id Int
   planos    Planos @relation(fields: [planos_id], references: [id])
-
   empresa   EmpresasExistentes
   tarefas  UsuarioTarefa[]
 
@@ -29,12 +27,9 @@ model Tarefa {
   descricao       String
   funcaoEsperada  String
   codigoBase      String       @db.Text
-
   ponto              Int          @default(50)
-
   testes          Teste[]
   tarefasUsuarios UsuarioTarefa[]
-
   dataVencimento  DateTime
   status          StatusTarefa @default(PENDENTE)
 
