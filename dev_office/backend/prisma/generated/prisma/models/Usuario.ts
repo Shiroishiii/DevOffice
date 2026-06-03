@@ -42,6 +42,7 @@ export type UsuarioMinAggregateOutputType = {
   nome: string | null
   senha: string | null
   planos_id: number | null
+  empresa: $Enums.EmpresasExistentes | null
 }
 
 export type UsuarioMaxAggregateOutputType = {
@@ -50,6 +51,7 @@ export type UsuarioMaxAggregateOutputType = {
   nome: string | null
   senha: string | null
   planos_id: number | null
+  empresa: $Enums.EmpresasExistentes | null
 }
 
 export type UsuarioCountAggregateOutputType = {
@@ -58,6 +60,7 @@ export type UsuarioCountAggregateOutputType = {
   nome: number
   senha: number
   planos_id: number
+  empresa: number
   _all: number
 }
 
@@ -78,6 +81,7 @@ export type UsuarioMinAggregateInputType = {
   nome?: true
   senha?: true
   planos_id?: true
+  empresa?: true
 }
 
 export type UsuarioMaxAggregateInputType = {
@@ -86,6 +90,7 @@ export type UsuarioMaxAggregateInputType = {
   nome?: true
   senha?: true
   planos_id?: true
+  empresa?: true
 }
 
 export type UsuarioCountAggregateInputType = {
@@ -94,6 +99,7 @@ export type UsuarioCountAggregateInputType = {
   nome?: true
   senha?: true
   planos_id?: true
+  empresa?: true
   _all?: true
 }
 
@@ -189,6 +195,7 @@ export type UsuarioGroupByOutputType = {
   nome: string | null
   senha: string
   planos_id: number | null
+  empresa: $Enums.EmpresasExistentes
   _count: UsuarioCountAggregateOutputType | null
   _avg: UsuarioAvgAggregateOutputType | null
   _sum: UsuarioSumAggregateOutputType | null
@@ -220,8 +227,9 @@ export type UsuarioWhereInput = {
   nome?: Prisma.StringNullableFilter<"Usuario"> | string | null
   senha?: Prisma.StringFilter<"Usuario"> | string
   planos_id?: Prisma.IntNullableFilter<"Usuario"> | number | null
+  empresa?: Prisma.EnumEmpresasExistentesFilter<"Usuario"> | $Enums.EmpresasExistentes
   planos?: Prisma.XOR<Prisma.PlanosNullableScalarRelationFilter, Prisma.PlanosWhereInput> | null
-  empresas?: Prisma.EmpresaListRelationFilter
+  tarefas?: Prisma.TarefaListRelationFilter
 }
 
 export type UsuarioOrderByWithRelationInput = {
@@ -230,8 +238,9 @@ export type UsuarioOrderByWithRelationInput = {
   nome?: Prisma.SortOrderInput | Prisma.SortOrder
   senha?: Prisma.SortOrder
   planos_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  empresa?: Prisma.SortOrder
   planos?: Prisma.PlanosOrderByWithRelationInput
-  empresas?: Prisma.EmpresaOrderByRelationAggregateInput
+  tarefas?: Prisma.TarefaOrderByRelationAggregateInput
 }
 
 export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
@@ -243,8 +252,9 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
   nome?: Prisma.StringNullableFilter<"Usuario"> | string | null
   senha?: Prisma.StringFilter<"Usuario"> | string
   planos_id?: Prisma.IntNullableFilter<"Usuario"> | number | null
+  empresa?: Prisma.EnumEmpresasExistentesFilter<"Usuario"> | $Enums.EmpresasExistentes
   planos?: Prisma.XOR<Prisma.PlanosNullableScalarRelationFilter, Prisma.PlanosWhereInput> | null
-  empresas?: Prisma.EmpresaListRelationFilter
+  tarefas?: Prisma.TarefaListRelationFilter
 }, "id" | "email">
 
 export type UsuarioOrderByWithAggregationInput = {
@@ -253,6 +263,7 @@ export type UsuarioOrderByWithAggregationInput = {
   nome?: Prisma.SortOrderInput | Prisma.SortOrder
   senha?: Prisma.SortOrder
   planos_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  empresa?: Prisma.SortOrder
   _count?: Prisma.UsuarioCountOrderByAggregateInput
   _avg?: Prisma.UsuarioAvgOrderByAggregateInput
   _max?: Prisma.UsuarioMaxOrderByAggregateInput
@@ -269,14 +280,16 @@ export type UsuarioScalarWhereWithAggregatesInput = {
   nome?: Prisma.StringNullableWithAggregatesFilter<"Usuario"> | string | null
   senha?: Prisma.StringWithAggregatesFilter<"Usuario"> | string
   planos_id?: Prisma.IntNullableWithAggregatesFilter<"Usuario"> | number | null
+  empresa?: Prisma.EnumEmpresasExistentesWithAggregatesFilter<"Usuario"> | $Enums.EmpresasExistentes
 }
 
 export type UsuarioCreateInput = {
   email: string
   nome?: string | null
   senha: string
+  empresa: $Enums.EmpresasExistentes
   planos?: Prisma.PlanosCreateNestedOneWithoutUsuariosInput
-  empresas?: Prisma.EmpresaCreateNestedManyWithoutUsuarioInput
+  tarefas?: Prisma.TarefaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateInput = {
@@ -285,15 +298,17 @@ export type UsuarioUncheckedCreateInput = {
   nome?: string | null
   senha: string
   planos_id?: number | null
-  empresas?: Prisma.EmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+  empresa: $Enums.EmpresasExistentes
+  tarefas?: Prisma.TarefaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
   planos?: Prisma.PlanosUpdateOneWithoutUsuariosNestedInput
-  empresas?: Prisma.EmpresaUpdateManyWithoutUsuarioNestedInput
+  tarefas?: Prisma.TarefaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateInput = {
@@ -302,7 +317,8 @@ export type UsuarioUncheckedUpdateInput = {
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
   planos_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  empresas?: Prisma.EmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
+  tarefas?: Prisma.TarefaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioCreateManyInput = {
@@ -311,12 +327,14 @@ export type UsuarioCreateManyInput = {
   nome?: string | null
   senha: string
   planos_id?: number | null
+  empresa: $Enums.EmpresasExistentes
 }
 
 export type UsuarioUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
 }
 
 export type UsuarioUncheckedUpdateManyInput = {
@@ -325,6 +343,7 @@ export type UsuarioUncheckedUpdateManyInput = {
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
   planos_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
 }
 
 export type UsuarioCountOrderByAggregateInput = {
@@ -333,6 +352,7 @@ export type UsuarioCountOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   senha?: Prisma.SortOrder
   planos_id?: Prisma.SortOrder
+  empresa?: Prisma.SortOrder
 }
 
 export type UsuarioAvgOrderByAggregateInput = {
@@ -346,6 +366,7 @@ export type UsuarioMaxOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   senha?: Prisma.SortOrder
   planos_id?: Prisma.SortOrder
+  empresa?: Prisma.SortOrder
 }
 
 export type UsuarioMinOrderByAggregateInput = {
@@ -354,6 +375,7 @@ export type UsuarioMinOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   senha?: Prisma.SortOrder
   planos_id?: Prisma.SortOrder
+  empresa?: Prisma.SortOrder
 }
 
 export type UsuarioSumOrderByAggregateInput = {
@@ -361,9 +383,9 @@ export type UsuarioSumOrderByAggregateInput = {
   planos_id?: Prisma.SortOrder
 }
 
-export type UsuarioScalarRelationFilter = {
-  is?: Prisma.UsuarioWhereInput
-  isNot?: Prisma.UsuarioWhereInput
+export type UsuarioNullableScalarRelationFilter = {
+  is?: Prisma.UsuarioWhereInput | null
+  isNot?: Prisma.UsuarioWhereInput | null
 }
 
 export type UsuarioListRelationFilter = {
@@ -384,6 +406,10 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type EnumEmpresasExistentesFieldUpdateOperationsInput = {
+  set?: $Enums.EmpresasExistentes
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -400,18 +426,20 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type UsuarioCreateNestedOneWithoutEmpresasInput = {
-  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutEmpresasInput, Prisma.UsuarioUncheckedCreateWithoutEmpresasInput>
-  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutEmpresasInput
+export type UsuarioCreateNestedOneWithoutTarefasInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutTarefasInput, Prisma.UsuarioUncheckedCreateWithoutTarefasInput>
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutTarefasInput
   connect?: Prisma.UsuarioWhereUniqueInput
 }
 
-export type UsuarioUpdateOneRequiredWithoutEmpresasNestedInput = {
-  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutEmpresasInput, Prisma.UsuarioUncheckedCreateWithoutEmpresasInput>
-  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutEmpresasInput
-  upsert?: Prisma.UsuarioUpsertWithoutEmpresasInput
+export type UsuarioUpdateOneWithoutTarefasNestedInput = {
+  create?: Prisma.XOR<Prisma.UsuarioCreateWithoutTarefasInput, Prisma.UsuarioUncheckedCreateWithoutTarefasInput>
+  connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutTarefasInput
+  upsert?: Prisma.UsuarioUpsertWithoutTarefasInput
+  disconnect?: Prisma.UsuarioWhereInput | boolean
+  delete?: Prisma.UsuarioWhereInput | boolean
   connect?: Prisma.UsuarioWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UsuarioUpdateToOneWithWhereWithoutEmpresasInput, Prisma.UsuarioUpdateWithoutEmpresasInput>, Prisma.UsuarioUncheckedUpdateWithoutEmpresasInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UsuarioUpdateToOneWithWhereWithoutTarefasInput, Prisma.UsuarioUpdateWithoutTarefasInput>, Prisma.UsuarioUncheckedUpdateWithoutTarefasInput>
 }
 
 export type UsuarioCreateNestedManyWithoutPlanosInput = {
@@ -456,57 +484,62 @@ export type UsuarioUncheckedUpdateManyWithoutPlanosNestedInput = {
   deleteMany?: Prisma.UsuarioScalarWhereInput | Prisma.UsuarioScalarWhereInput[]
 }
 
-export type UsuarioCreateWithoutEmpresasInput = {
+export type UsuarioCreateWithoutTarefasInput = {
   email: string
   nome?: string | null
   senha: string
+  empresa: $Enums.EmpresasExistentes
   planos?: Prisma.PlanosCreateNestedOneWithoutUsuariosInput
 }
 
-export type UsuarioUncheckedCreateWithoutEmpresasInput = {
+export type UsuarioUncheckedCreateWithoutTarefasInput = {
   id?: number
   email: string
   nome?: string | null
   senha: string
   planos_id?: number | null
+  empresa: $Enums.EmpresasExistentes
 }
 
-export type UsuarioCreateOrConnectWithoutEmpresasInput = {
+export type UsuarioCreateOrConnectWithoutTarefasInput = {
   where: Prisma.UsuarioWhereUniqueInput
-  create: Prisma.XOR<Prisma.UsuarioCreateWithoutEmpresasInput, Prisma.UsuarioUncheckedCreateWithoutEmpresasInput>
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutTarefasInput, Prisma.UsuarioUncheckedCreateWithoutTarefasInput>
 }
 
-export type UsuarioUpsertWithoutEmpresasInput = {
-  update: Prisma.XOR<Prisma.UsuarioUpdateWithoutEmpresasInput, Prisma.UsuarioUncheckedUpdateWithoutEmpresasInput>
-  create: Prisma.XOR<Prisma.UsuarioCreateWithoutEmpresasInput, Prisma.UsuarioUncheckedCreateWithoutEmpresasInput>
+export type UsuarioUpsertWithoutTarefasInput = {
+  update: Prisma.XOR<Prisma.UsuarioUpdateWithoutTarefasInput, Prisma.UsuarioUncheckedUpdateWithoutTarefasInput>
+  create: Prisma.XOR<Prisma.UsuarioCreateWithoutTarefasInput, Prisma.UsuarioUncheckedCreateWithoutTarefasInput>
   where?: Prisma.UsuarioWhereInput
 }
 
-export type UsuarioUpdateToOneWithWhereWithoutEmpresasInput = {
+export type UsuarioUpdateToOneWithWhereWithoutTarefasInput = {
   where?: Prisma.UsuarioWhereInput
-  data: Prisma.XOR<Prisma.UsuarioUpdateWithoutEmpresasInput, Prisma.UsuarioUncheckedUpdateWithoutEmpresasInput>
+  data: Prisma.XOR<Prisma.UsuarioUpdateWithoutTarefasInput, Prisma.UsuarioUncheckedUpdateWithoutTarefasInput>
 }
 
-export type UsuarioUpdateWithoutEmpresasInput = {
+export type UsuarioUpdateWithoutTarefasInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
   planos?: Prisma.PlanosUpdateOneWithoutUsuariosNestedInput
 }
 
-export type UsuarioUncheckedUpdateWithoutEmpresasInput = {
+export type UsuarioUncheckedUpdateWithoutTarefasInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
   planos_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
 }
 
 export type UsuarioCreateWithoutPlanosInput = {
   email: string
   nome?: string | null
   senha: string
-  empresas?: Prisma.EmpresaCreateNestedManyWithoutUsuarioInput
+  empresa: $Enums.EmpresasExistentes
+  tarefas?: Prisma.TarefaCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioUncheckedCreateWithoutPlanosInput = {
@@ -514,7 +547,8 @@ export type UsuarioUncheckedCreateWithoutPlanosInput = {
   email: string
   nome?: string | null
   senha: string
-  empresas?: Prisma.EmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+  empresa: $Enums.EmpresasExistentes
+  tarefas?: Prisma.TarefaUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type UsuarioCreateOrConnectWithoutPlanosInput = {
@@ -552,6 +586,7 @@ export type UsuarioScalarWhereInput = {
   nome?: Prisma.StringNullableFilter<"Usuario"> | string | null
   senha?: Prisma.StringFilter<"Usuario"> | string
   planos_id?: Prisma.IntNullableFilter<"Usuario"> | number | null
+  empresa?: Prisma.EnumEmpresasExistentesFilter<"Usuario"> | $Enums.EmpresasExistentes
 }
 
 export type UsuarioCreateManyPlanosInput = {
@@ -559,13 +594,15 @@ export type UsuarioCreateManyPlanosInput = {
   email: string
   nome?: string | null
   senha: string
+  empresa: $Enums.EmpresasExistentes
 }
 
 export type UsuarioUpdateWithoutPlanosInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
-  empresas?: Prisma.EmpresaUpdateManyWithoutUsuarioNestedInput
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
+  tarefas?: Prisma.TarefaUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateWithoutPlanosInput = {
@@ -573,7 +610,8 @@ export type UsuarioUncheckedUpdateWithoutPlanosInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
-  empresas?: Prisma.EmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
+  tarefas?: Prisma.TarefaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type UsuarioUncheckedUpdateManyWithoutPlanosInput = {
@@ -581,6 +619,7 @@ export type UsuarioUncheckedUpdateManyWithoutPlanosInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senha?: Prisma.StringFieldUpdateOperationsInput | string
+  empresa?: Prisma.EnumEmpresasExistentesFieldUpdateOperationsInput | $Enums.EmpresasExistentes
 }
 
 
@@ -589,11 +628,11 @@ export type UsuarioUncheckedUpdateManyWithoutPlanosInput = {
  */
 
 export type UsuarioCountOutputType = {
-  empresas: number
+  tarefas: number
 }
 
 export type UsuarioCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  empresas?: boolean | UsuarioCountOutputTypeCountEmpresasArgs
+  tarefas?: boolean | UsuarioCountOutputTypeCountTarefasArgs
 }
 
 /**
@@ -609,8 +648,8 @@ export type UsuarioCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * UsuarioCountOutputType without action
  */
-export type UsuarioCountOutputTypeCountEmpresasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EmpresaWhereInput
+export type UsuarioCountOutputTypeCountTarefasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TarefaWhereInput
 }
 
 
@@ -620,8 +659,9 @@ export type UsuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   nome?: boolean
   senha?: boolean
   planos_id?: boolean
+  empresa?: boolean
   planos?: boolean | Prisma.Usuario$planosArgs<ExtArgs>
-  empresas?: boolean | Prisma.Usuario$empresasArgs<ExtArgs>
+  tarefas?: boolean | Prisma.Usuario$tarefasArgs<ExtArgs>
   _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["usuario"]>
 
@@ -631,6 +671,7 @@ export type UsuarioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   nome?: boolean
   senha?: boolean
   planos_id?: boolean
+  empresa?: boolean
   planos?: boolean | Prisma.Usuario$planosArgs<ExtArgs>
 }, ExtArgs["result"]["usuario"]>
 
@@ -640,6 +681,7 @@ export type UsuarioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   nome?: boolean
   senha?: boolean
   planos_id?: boolean
+  empresa?: boolean
   planos?: boolean | Prisma.Usuario$planosArgs<ExtArgs>
 }, ExtArgs["result"]["usuario"]>
 
@@ -649,12 +691,13 @@ export type UsuarioSelectScalar = {
   nome?: boolean
   senha?: boolean
   planos_id?: boolean
+  empresa?: boolean
 }
 
-export type UsuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "nome" | "senha" | "planos_id", ExtArgs["result"]["usuario"]>
+export type UsuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "nome" | "senha" | "planos_id" | "empresa", ExtArgs["result"]["usuario"]>
 export type UsuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   planos?: boolean | Prisma.Usuario$planosArgs<ExtArgs>
-  empresas?: boolean | Prisma.Usuario$empresasArgs<ExtArgs>
+  tarefas?: boolean | Prisma.Usuario$tarefasArgs<ExtArgs>
   _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UsuarioIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -668,7 +711,7 @@ export type $UsuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Usuario"
   objects: {
     planos: Prisma.$PlanosPayload<ExtArgs> | null
-    empresas: Prisma.$EmpresaPayload<ExtArgs>[]
+    tarefas: Prisma.$TarefaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -676,6 +719,7 @@ export type $UsuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     nome: string | null
     senha: string
     planos_id: number | null
+    empresa: $Enums.EmpresasExistentes
   }, ExtArgs["result"]["usuario"]>
   composites: {}
 }
@@ -1071,7 +1115,7 @@ readonly fields: UsuarioFieldRefs;
 export interface Prisma__UsuarioClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   planos<T extends Prisma.Usuario$planosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$planosArgs<ExtArgs>>): Prisma.Prisma__PlanosClient<runtime.Types.Result.GetResult<Prisma.$PlanosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  empresas<T extends Prisma.Usuario$empresasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$empresasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tarefas<T extends Prisma.Usuario$tarefasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Usuario$tarefasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1106,6 +1150,7 @@ export interface UsuarioFieldRefs {
   readonly nome: Prisma.FieldRef<"Usuario", 'String'>
   readonly senha: Prisma.FieldRef<"Usuario", 'String'>
   readonly planos_id: Prisma.FieldRef<"Usuario", 'Int'>
+  readonly empresa: Prisma.FieldRef<"Usuario", 'EmpresasExistentes'>
 }
     
 
@@ -1526,27 +1571,27 @@ export type Usuario$planosArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Usuario.empresas
+ * Usuario.tarefas
  */
-export type Usuario$empresasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Usuario$tarefasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Empresa
+   * Select specific fields to fetch from the Tarefa
    */
-  select?: Prisma.EmpresaSelect<ExtArgs> | null
+  select?: Prisma.TarefaSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Empresa
+   * Omit specific fields from the Tarefa
    */
-  omit?: Prisma.EmpresaOmit<ExtArgs> | null
+  omit?: Prisma.TarefaOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.EmpresaInclude<ExtArgs> | null
-  where?: Prisma.EmpresaWhereInput
-  orderBy?: Prisma.EmpresaOrderByWithRelationInput | Prisma.EmpresaOrderByWithRelationInput[]
-  cursor?: Prisma.EmpresaWhereUniqueInput
+  include?: Prisma.TarefaInclude<ExtArgs> | null
+  where?: Prisma.TarefaWhereInput
+  orderBy?: Prisma.TarefaOrderByWithRelationInput | Prisma.TarefaOrderByWithRelationInput[]
+  cursor?: Prisma.TarefaWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.EmpresaScalarFieldEnum | Prisma.EmpresaScalarFieldEnum[]
+  distinct?: Prisma.TarefaScalarFieldEnum | Prisma.TarefaScalarFieldEnum[]
 }
 
 /**

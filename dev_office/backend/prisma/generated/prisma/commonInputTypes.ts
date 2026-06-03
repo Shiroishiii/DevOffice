@@ -66,6 +66,13 @@ export type IntNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedIntNullableFilter<$PrismaModel> | number | null
 }
 
+export type EnumEmpresasExistentesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EmpresasExistentes | Prisma.EnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  in?: $Enums.EmpresasExistentes[] | Prisma.ListEnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EmpresasExistentes[] | Prisma.ListEnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEmpresasExistentesFilter<$PrismaModel> | $Enums.EmpresasExistentes
+}
+
 export type SortOrderInput = {
   sort: Prisma.SortOrder
   nulls?: Prisma.NullsOrder
@@ -137,6 +144,16 @@ export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
+}
+
+export type EnumEmpresasExistentesWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EmpresasExistentes | Prisma.EnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  in?: $Enums.EmpresasExistentes[] | Prisma.ListEnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EmpresasExistentes[] | Prisma.ListEnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEmpresasExistentesWithAggregatesFilter<$PrismaModel> | $Enums.EmpresasExistentes
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEmpresasExistentesFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEmpresasExistentesFilter<$PrismaModel>
 }
 
 export type DateTimeFilter<$PrismaModel = never> = {
@@ -299,6 +316,13 @@ export type NestedIntNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedIntNullableFilter<$PrismaModel> | number | null
 }
 
+export type NestedEnumEmpresasExistentesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EmpresasExistentes | Prisma.EnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  in?: $Enums.EmpresasExistentes[] | Prisma.ListEnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EmpresasExistentes[] | Prisma.ListEnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEmpresasExistentesFilter<$PrismaModel> | $Enums.EmpresasExistentes
+}
+
 export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -385,6 +409,16 @@ export type NestedFloatNullableFilter<$PrismaModel = never> = {
   gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedEnumEmpresasExistentesWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EmpresasExistentes | Prisma.EnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  in?: $Enums.EmpresasExistentes[] | Prisma.ListEnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EmpresasExistentes[] | Prisma.ListEnumEmpresasExistentesFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEmpresasExistentesWithAggregatesFilter<$PrismaModel> | $Enums.EmpresasExistentes
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEmpresasExistentesFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEmpresasExistentesFilter<$PrismaModel>
 }
 
 export type NestedDateTimeFilter<$PrismaModel = never> = {

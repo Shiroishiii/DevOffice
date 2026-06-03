@@ -47,11 +47,6 @@ export { Prisma }
  */
 export type Usuario = Prisma.UsuarioModel
 /**
- * Model Empresa
- * 
- */
-export type Empresa = Prisma.EmpresaModel
-/**
  * Model Tarefa
  * 
  */

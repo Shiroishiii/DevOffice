@@ -385,7 +385,6 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Usuario: 'Usuario',
-  Empresa: 'Empresa',
   Tarefa: 'Tarefa',
   Teste: 'Teste',
   Planos: 'Planos'
@@ -404,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "empresa" | "tarefa" | "teste" | "planos"
+    modelProps: "usuario" | "tarefa" | "teste" | "planos"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -479,80 +478,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UsuarioCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UsuarioCountAggregateOutputType> | number
-        }
-      }
-    }
-    Empresa: {
-      payload: Prisma.$EmpresaPayload<ExtArgs>
-      fields: Prisma.EmpresaFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.EmpresaFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.EmpresaFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>
-        }
-        findFirst: {
-          args: Prisma.EmpresaFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.EmpresaFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>
-        }
-        findMany: {
-          args: Prisma.EmpresaFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>[]
-        }
-        create: {
-          args: Prisma.EmpresaCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>
-        }
-        createMany: {
-          args: Prisma.EmpresaCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.EmpresaCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>[]
-        }
-        delete: {
-          args: Prisma.EmpresaDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>
-        }
-        update: {
-          args: Prisma.EmpresaUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>
-        }
-        deleteMany: {
-          args: Prisma.EmpresaDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.EmpresaUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.EmpresaUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>[]
-        }
-        upsert: {
-          args: Prisma.EmpresaUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmpresaPayload>
-        }
-        aggregate: {
-          args: Prisma.EmpresaAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateEmpresa>
-        }
-        groupBy: {
-          args: Prisma.EmpresaGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.EmpresaGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.EmpresaCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.EmpresaCountAggregateOutputType> | number
         }
       }
     }
@@ -822,21 +747,11 @@ export const UsuarioScalarFieldEnum = {
   email: 'email',
   nome: 'nome',
   senha: 'senha',
-  planos_id: 'planos_id'
+  planos_id: 'planos_id',
+  empresa: 'empresa'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
-
-
-export const EmpresaScalarFieldEnum = {
-  id: 'id',
-  nome: 'nome',
-  email: 'email',
-  telefone: 'telefone',
-  usuario_id: 'usuario_id'
-} as const
-
-export type EmpresaScalarFieldEnum = (typeof EmpresaScalarFieldEnum)[keyof typeof EmpresaScalarFieldEnum]
 
 
 export const TarefaScalarFieldEnum = {
@@ -847,7 +762,8 @@ export const TarefaScalarFieldEnum = {
   codigoBase: 'codigoBase',
   xp: 'xp',
   dataVencimento: 'dataVencimento',
-  status: 'status'
+  status: 'status',
+  usuario_id: 'usuario_id'
 } as const
 
 export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof TarefaScalarFieldEnum]
@@ -942,6 +858,20 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'String[]'
  */
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EmpresasExistentes'
+ */
+export type EnumEmpresasExistentesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmpresasExistentes'>
+    
+
+
+/**
+ * Reference to a field of type 'EmpresasExistentes[]'
+ */
+export type ListEnumEmpresasExistentesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmpresasExistentes[]'>
     
 
 
@@ -1125,7 +1055,6 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   usuario?: Prisma.UsuarioOmit
-  empresa?: Prisma.EmpresaOmit
   tarefa?: Prisma.TarefaOmit
   teste?: Prisma.TesteOmit
   planos?: Prisma.PlanosOmit
