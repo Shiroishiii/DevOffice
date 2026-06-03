@@ -7,17 +7,22 @@ type MissionListSectionProps = {
   onSelectMission: (id: number) => void
 }
 
-
-
 const MissionListSection = ({
   tarefas,
   selectedId,
   onSelectMission,
 }: MissionListSectionProps) => {
+  // ordena sem mudar layout visual, só lógica
+  const sortedTarefas = [...tarefas].sort((a, b) => {
+    if (a.status === b.status) return 0
+    if (a.status === 'CONCLUIDO') return 1
+    return -1
+  })
+
   return (
     <div className="flex h-full w-full flex-col gap-6 lg:w-100">
       <div className="custom-scrollbar flex flex-1 flex-col gap-4 overflow-y-auto pr-2">
-        {tarefas.map((tarefa) => (
+        {sortedTarefas.map((tarefa) => (
           <MissionListCard
             key={tarefa.id}
             tarefa={tarefa}
@@ -28,7 +33,6 @@ const MissionListSection = ({
       </div>
     </div>
   )
-  
 }
 
 export default MissionListSection

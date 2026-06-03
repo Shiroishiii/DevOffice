@@ -44,9 +44,13 @@ export class TarefaService {
   }
 
   async concluirTarefa(usuarioId: number, tarefaId: number) {
+    if (!usuarioId) {
+      throw new Error("usuarioId é obrigatório");
+    }
+
     const tarefa = await this.buscarPorId(tarefaId);
 
-    const jaConcluida = await this.tarefaRepository.verificarConclusao?.(
+    const jaConcluida = await this.tarefaRepository.verificarConclusao(
       usuarioId,
       tarefaId
     );

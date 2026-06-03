@@ -116,27 +116,6 @@ const AppSideNav = ({ showBottomNav = true }: AppSideNavProps) => {
           )}
         </NavLink>
 
-        <NavLink className={navLinkClass} to="/arvore-tech">
-          {({ isActive }) => (
-            <>
-              <span
-                className={`material-symbols-outlined ${
-                  !isActive ? 'text-[#a2e7ff]' : ''
-                }`}
-                style={
-                  isActive
-                    ? { fontVariationSettings: '"FILL" 1' }
-                    : undefined
-                }
-              >
-                account_tree
-              </span>
-
-              <span>Inteligência</span>
-            </>
-          )}
-        </NavLink>
-
         <NavLink className={navLinkClass} to="/aprenda">
           {({ isActive }) => (
             <>

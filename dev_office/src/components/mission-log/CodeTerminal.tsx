@@ -6,12 +6,14 @@ type CodeTerminalProps = {
   codigoInicial: string
   funcaoEsperada: string
   tarefaId: number
+  onSuccess?: () => void
 }
 
 export default function CodeTerminal({
   codigoInicial,
   funcaoEsperada,
   tarefaId,
+  onSuccess,
 }: CodeTerminalProps) {
   const [code, setCode] = useState(codigoInicial)
   const [output, setOutput] = useState('')
@@ -74,6 +76,7 @@ export default function CodeTerminal({
 
       if (result.success) {
         setOutput(`🎉 ${result.output}`)
+        onSuccess?.()
       } else {
         setOutput(result.output)
       }

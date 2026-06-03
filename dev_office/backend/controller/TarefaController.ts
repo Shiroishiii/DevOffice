@@ -80,13 +80,14 @@ export class TarefaController {
 
       await this.tarefaService.concluirTarefa(usuarioId, tarefaId);
 
-      res.status(200).json({
-        mensagem: "Tarefa concluída com sucesso."
-      });
+      const tarefaAtualizada = await this.tarefaService.buscarPorId(tarefaId);
+
+      res.status(200).json(tarefaAtualizada);
     } catch (error: any) {
       res.status(400).json({ mensagem: error.message });
     }
   }
+
 }
 
 export const tarefaController = new TarefaController(tarefaServices);

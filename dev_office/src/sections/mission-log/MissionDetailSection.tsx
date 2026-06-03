@@ -3,9 +3,10 @@ import type { Tarefa } from '../../pages/MissionLog'
 
 type Props = {
   tarefa: Tarefa | null
+  onConcluir: (id: number) => void
 }
 
-const MissionDetailSection = ({ tarefa }: Props) => {
+const MissionDetailSection = ({ tarefa, onConcluir }: Props) => {
   if (!tarefa) {
     return (
       <div className="glass-panel hidden flex-1 items-center justify-center rounded-2xl lg:flex">
@@ -43,6 +44,7 @@ const MissionDetailSection = ({ tarefa }: Props) => {
           codigoInicial={tarefa.codigoBase}
           funcaoEsperada={tarefa.funcaoEsperada}
           tarefaId={tarefa.id}
+          onSuccess={() => onConcluir(tarefa.id)}
         />
       </div>
     </div>
