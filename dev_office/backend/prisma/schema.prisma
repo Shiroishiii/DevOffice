@@ -36,12 +36,9 @@ model Usuario {
   email     String              @unique
   nome      String?
   senha     String
-  planos_id Int?
-  planos    Planos?   @relation(fields: [planos_id], references: [id])
-  empresas  Empresa[]
 
   planos_id Int
-  planos    Planos              @relation(fields: [planos_id], references: [id])
+  planos    Planos @relation(fields: [planos_id], references: [id])
 
   empresa   EmpresasExistentes
 
@@ -50,20 +47,13 @@ model Usuario {
 
 model Tarefa {
   id              Int          @id @default(autoincrement())
-
   titulo          String
   descricao       String
-
   funcaoEsperada  String
-
   codigoBase      String       @db.Text
-
   xp              Int          @default(50)
-
   testes          Teste[]
-
   dataVencimento  DateTime
-
   status          StatusTarefa @default(PENDENTE)
   usuario_id      Int?
   usuario         Usuario      @relation(fields: [usuario_id], references: [id])
@@ -73,15 +63,13 @@ model Tarefa {
 
 model Teste {
   id        Int  @id @default(autoincrement())
-
   entrada   Json
   esperado  Json
-
   tarefaId  Int
   tarefa    Tarefa @relation(fields: [tarefaId], references: [id])
-
   @@map("teste")
 }
+
 
 model Planos {
   id        Int       @id @default(autoincrement())

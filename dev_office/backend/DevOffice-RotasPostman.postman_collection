@@ -1,0 +1,50 @@
+{
+  "info": {
+    "_postman_id": "f59e12fe-a3e9-43de-bf8c-c53fc352ec7b",
+    "name": "DevOffice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54511430"
+  },
+  "item": [
+    {
+      "name": "Listar Usuarios",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Usuários",
+      "request": {
+        "method": "POST",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Usuário",
+      "request": {
+        "method": "PUT",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar Usuário",
+      "request": {
+        "method": "DELETE",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Login de Usuários",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
