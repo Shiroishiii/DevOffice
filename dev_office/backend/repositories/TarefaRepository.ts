@@ -3,18 +3,18 @@ import { prisma } from "../prisma/prisma";
 
 export class TarefaRepository {
   async verificarConclusao(usuarioId: number, tarefaId: number): Promise<boolean> {
-  const registro = await this.prisma.usuarioTarefa.findUnique({
-    where: {
-      usuarioId_tarefaId: {
-        usuarioId,
-        tarefaId,
+    const registro = await this.prisma.usuarioTarefa.findUnique({
+      where: {
+        usuarioId_tarefaId: {
+          usuarioId,
+          tarefaId,
+        },
       },
-    },
-  });
+    });
 
-  return !!registro?.concluida;
-}
-  constructor(private readonly prisma: PrismaClient) {}
+    return !!registro?.concluida;
+  }
+  constructor(private readonly prisma: PrismaClient) { }
 
   async listarTarefas(): Promise<Tarefa[]> {
     return this.prisma.tarefa.findMany({
@@ -59,14 +59,20 @@ export class TarefaRepository {
 
   async concluirTarefa(usuarioId: number, tarefaId: number) {
     // 1. marca como concluída na tabela intermediária
-    await this.prisma.usuarioTarefa.update({
+    await this.prisma.usuarioTarefa.upsert({
       where: {
         usuarioId_tarefaId: {
           usuarioId,
           tarefaId,
         },
       },
-      data: {
+      update: {
+        concluida: true,
+        dataConclusao: new Date(),
+      },
+      create: {
+        usuarioId,
+        tarefaId,
         concluida: true,
         dataConclusao: new Date(),
       },

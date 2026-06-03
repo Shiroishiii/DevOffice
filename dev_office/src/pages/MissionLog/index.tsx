@@ -23,17 +23,53 @@ const MissionLog = () => {
   useEffect(() => {
     async function loadTarefas() {
       const response = await fetch('http://localhost:3000/tarefas')
+
       const data = await response.json()
 
-      setTarefas(data)
-
-      if (data.length > 0) {
-        setSelectedTask(data[0])
+      // 👇 proteção contra erro da API
+      if (!response.ok) {
+        console.error('Erro ao buscar tarefas:', data)
+        return
       }
+
+      setTarefas(data)
+      setSelectedTask(data[0] ?? null)
     }
 
     loadTarefas()
   }, [])
+
+  async function concluirTarefa(id: number) {
+    if (tarefas.find(t => t.id === id)?.status === 'CONCLUIDO') return
+
+    const response = await fetch(`http://localhost:3000/tarefas/${id}/concluir`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        usuarioId: 1
+      })
+    })
+
+    const updated = await response.json()
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => null)
+      console.error(error?.mensagem || 'Erro ao concluir tarefa')
+      return
+    }
+
+    setTarefas(prev =>
+      prev.map(t =>
+        t.id === updated.id ? updated : t
+      )
+    )
+
+    setSelectedTask(prev =>
+      prev?.id === updated.id ? updated : prev
+    )
+  }
 
   return (
     <AppPageShell
@@ -54,7 +90,10 @@ const MissionLog = () => {
           }}
         />
 
-        <MissionDetailSection tarefa={selectedTask} />
+        <MissionDetailSection
+          tarefa={selectedTask}
+          onConcluir={concluirTarefa}
+        />
       </div>
     </AppPageShell>
   )
