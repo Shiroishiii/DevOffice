@@ -1,7 +1,7 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "./generated/prisma/client";
 
-const connectionString = `postgresql://postgres:senai@localhost:5432/clinic?schema=public`;
+const connectionString = `postgresql://postgres:senai@localhost:5432/devoffice?schema=public`;
 
 const prisma = new PrismaClient({
     adapter: new PrismaPg({ connectionString })
@@ -16,7 +16,7 @@ async function main() {
             codigoBase: `function isEven(num) {
 
 }`,
-            xp: 50,
+            ponto: 50,
             testes: [
                 { entrada: [2], esperado: true },
                 { entrada: [5], esperado: false }
@@ -30,7 +30,7 @@ async function main() {
             codigoBase: `function sum(a, b) {
 
 }`,
-            xp: 50,
+            ponto: 50,
             testes: [
                 { entrada: [2, 3], esperado: 5 },
                 { entrada: [10, 20], esperado: 30 }
@@ -44,7 +44,7 @@ async function main() {
             codigoBase: `function max(a, b) {
 
 }`,
-            xp: 50,
+            ponto: 50,
             testes: [
                 { entrada: [10, 5], esperado: 10 },
                 { entrada: [3, 7], esperado: 7 }
@@ -59,7 +59,7 @@ async function main() {
                 descricao: tarefa.descricao,
                 funcaoEsperada: tarefa.funcaoEsperada,
                 codigoBase: tarefa.codigoBase,
-                xp: tarefa.xp,
+                ponto: tarefa.ponto,
                 dataVencimento: new Date('2030-01-01'),
 
                 testes: {

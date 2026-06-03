@@ -18,34 +18,45 @@ export class TarefaService {
     return tarefa;
   }
 
-  async criarTarefa(dados: Omit<Tarefa, "id" | "status" | "usuario_id">) {
-    if (!dados.titulo || !dados.descricao || !dados.data_vencimento) {
+  async criarTarefa(
+    dados: Omit<Tarefa, "id" | "tarefasUsuarios">
+  ) {
+    if (!dados.titulo || !dados.descricao || !dados.dataVencimento) {
       throw new Error(
-        "Título, descrição e data de vencimento são obrigatórios.",
+        "Título, descrição e data de vencimento são obrigatórios."
       );
     }
 
     return this.tarefaRepository.criarTarefa(dados);
   }
 
-  async atualizarTarefa(id: number, dados: Partial<Omit<Tarefa, "id">>) {
-    await this.buscarPorId(id); // valida se existe antes de atualizar
+  async atualizarTarefa(
+    id: number,
+    dados: Partial<Omit<Tarefa, "id" | "tarefasUsuarios">>
+  ) {
+    await this.buscarPorId(id);
     return this.tarefaRepository.atualizarTarefa(id, dados);
   }
 
   async deletarTarefa(id: number) {
-    await this.buscarPorId(id); // valida se existe antes de deletar
+    await this.buscarPorId(id);
     return this.tarefaRepository.deletarTarefa(id);
   }
 
-  async concluirTarefa(id: number, usuario_id: number) {
-    const tarefa = await this.buscarPorId(id);
+  async concluirTarefa(usuarioId: number, tarefaId: number) {
+    const tarefa = await this.buscarPorId(tarefaId);
 
-    if (tarefa.status === "CONCLUIDO") {
-      throw new Error("Essa tarefa já foi concluída.");
+    const jaConcluida = await this.tarefaRepository.verificarConclusao?.(
+      usuarioId,
+      tarefaId
+    );
+
+    if (jaConcluida) {
+      throw new Error("Essa tarefa já foi concluída por este usuário.");
     }
 
-    return this.tarefaRepository.concluirTarefa(id, usuario_id);
+    return this.tarefaRepository.concluirTarefa(usuarioId, tarefaId);
   }
 }
+
 export const tarefaServices = new TarefaService(tarefaRepository);
