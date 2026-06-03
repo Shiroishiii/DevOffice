@@ -54,7 +54,8 @@ export const ModelName = {
   Usuario: 'Usuario',
   Tarefa: 'Tarefa',
   Teste: 'Teste',
-  Planos: 'Planos'
+  Planos: 'Planos',
+  UsuarioTarefa: 'UsuarioTarefa'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -78,6 +79,7 @@ export const UsuarioScalarFieldEnum = {
   email: 'email',
   nome: 'nome',
   senha: 'senha',
+  ponto: 'ponto',
   planos_id: 'planos_id',
   empresa: 'empresa'
 } as const
@@ -91,7 +93,7 @@ export const TarefaScalarFieldEnum = {
   descricao: 'descricao',
   funcaoEsperada: 'funcaoEsperada',
   codigoBase: 'codigoBase',
-  xp: 'xp',
+  ponto: 'ponto',
   dataVencimento: 'dataVencimento',
   status: 'status',
   usuario_id: 'usuario_id'
@@ -118,6 +120,17 @@ export const PlanosScalarFieldEnum = {
 export type PlanosScalarFieldEnum = (typeof PlanosScalarFieldEnum)[keyof typeof PlanosScalarFieldEnum]
 
 
+export const UsuarioTarefaScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  tarefaId: 'tarefaId',
+  concluida: 'concluida',
+  dataConclusao: 'dataConclusao'
+} as const
+
+export type UsuarioTarefaScalarFieldEnum = (typeof UsuarioTarefaScalarFieldEnum)[keyof typeof UsuarioTarefaScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -141,14 +154,6 @@ export const QueryMode = {
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
 export const JsonNullValueFilter = {
   DbNull: DbNull,
   JsonNull: JsonNull,
@@ -156,4 +161,12 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

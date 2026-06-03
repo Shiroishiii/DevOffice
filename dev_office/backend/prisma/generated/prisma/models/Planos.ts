@@ -264,9 +264,9 @@ export type PlanosUncheckedUpdateManyInput = {
   tipoPlano?: Prisma.EnumTipoPlanoFieldUpdateOperationsInput | $Enums.TipoPlano
 }
 
-export type PlanosNullableScalarRelationFilter = {
-  is?: Prisma.PlanosWhereInput | null
-  isNot?: Prisma.PlanosWhereInput | null
+export type PlanosScalarRelationFilter = {
+  is?: Prisma.PlanosWhereInput
+  isNot?: Prisma.PlanosWhereInput
 }
 
 export type PlanosCountOrderByAggregateInput = {
@@ -298,12 +298,10 @@ export type PlanosCreateNestedOneWithoutUsuariosInput = {
   connect?: Prisma.PlanosWhereUniqueInput
 }
 
-export type PlanosUpdateOneWithoutUsuariosNestedInput = {
+export type PlanosUpdateOneRequiredWithoutUsuariosNestedInput = {
   create?: Prisma.XOR<Prisma.PlanosCreateWithoutUsuariosInput, Prisma.PlanosUncheckedCreateWithoutUsuariosInput>
   connectOrCreate?: Prisma.PlanosCreateOrConnectWithoutUsuariosInput
   upsert?: Prisma.PlanosUpsertWithoutUsuariosInput
-  disconnect?: Prisma.PlanosWhereInput | boolean
-  delete?: Prisma.PlanosWhereInput | boolean
   connect?: Prisma.PlanosWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlanosUpdateToOneWithWhereWithoutUsuariosInput, Prisma.PlanosUpdateWithoutUsuariosInput>, Prisma.PlanosUncheckedUpdateWithoutUsuariosInput>
 }

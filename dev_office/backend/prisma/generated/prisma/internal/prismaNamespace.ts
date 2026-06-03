@@ -387,7 +387,8 @@ export const ModelName = {
   Usuario: 'Usuario',
   Tarefa: 'Tarefa',
   Teste: 'Teste',
-  Planos: 'Planos'
+  Planos: 'Planos',
+  UsuarioTarefa: 'UsuarioTarefa'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -403,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "tarefa" | "teste" | "planos"
+    modelProps: "usuario" | "tarefa" | "teste" | "planos" | "usuarioTarefa"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -703,6 +704,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UsuarioTarefa: {
+      payload: Prisma.$UsuarioTarefaPayload<ExtArgs>
+      fields: Prisma.UsuarioTarefaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UsuarioTarefaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UsuarioTarefaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>
+        }
+        findFirst: {
+          args: Prisma.UsuarioTarefaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UsuarioTarefaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>
+        }
+        findMany: {
+          args: Prisma.UsuarioTarefaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>[]
+        }
+        create: {
+          args: Prisma.UsuarioTarefaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>
+        }
+        createMany: {
+          args: Prisma.UsuarioTarefaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UsuarioTarefaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>[]
+        }
+        delete: {
+          args: Prisma.UsuarioTarefaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>
+        }
+        update: {
+          args: Prisma.UsuarioTarefaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>
+        }
+        deleteMany: {
+          args: Prisma.UsuarioTarefaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UsuarioTarefaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UsuarioTarefaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>[]
+        }
+        upsert: {
+          args: Prisma.UsuarioTarefaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioTarefaPayload>
+        }
+        aggregate: {
+          args: Prisma.UsuarioTarefaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUsuarioTarefa>
+        }
+        groupBy: {
+          args: Prisma.UsuarioTarefaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UsuarioTarefaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UsuarioTarefaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UsuarioTarefaCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -747,6 +822,7 @@ export const UsuarioScalarFieldEnum = {
   email: 'email',
   nome: 'nome',
   senha: 'senha',
+  ponto: 'ponto',
   planos_id: 'planos_id',
   empresa: 'empresa'
 } as const
@@ -760,7 +836,7 @@ export const TarefaScalarFieldEnum = {
   descricao: 'descricao',
   funcaoEsperada: 'funcaoEsperada',
   codigoBase: 'codigoBase',
-  xp: 'xp',
+  ponto: 'ponto',
   dataVencimento: 'dataVencimento',
   status: 'status',
   usuario_id: 'usuario_id'
@@ -787,6 +863,17 @@ export const PlanosScalarFieldEnum = {
 export type PlanosScalarFieldEnum = (typeof PlanosScalarFieldEnum)[keyof typeof PlanosScalarFieldEnum]
 
 
+export const UsuarioTarefaScalarFieldEnum = {
+  id: 'id',
+  usuarioId: 'usuarioId',
+  tarefaId: 'tarefaId',
+  concluida: 'concluida',
+  dataConclusao: 'dataConclusao'
+} as const
+
+export type UsuarioTarefaScalarFieldEnum = (typeof UsuarioTarefaScalarFieldEnum)[keyof typeof UsuarioTarefaScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -810,14 +897,6 @@ export const QueryMode = {
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
 export const JsonNullValueFilter = {
   DbNull: DbNull,
   JsonNull: JsonNull,
@@ -825,6 +904,14 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -928,6 +1015,13 @@ export type EnumTipoPlanoFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
  * Reference to a field of type 'TipoPlano[]'
  */
 export type ListEnumTipoPlanoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoPlano[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1058,6 +1152,7 @@ export type GlobalOmitConfig = {
   tarefa?: Prisma.TarefaOmit
   teste?: Prisma.TesteOmit
   planos?: Prisma.PlanosOmit
+  usuarioTarefa?: Prisma.UsuarioTarefaOmit
 }
 
 /* Types for Logging */

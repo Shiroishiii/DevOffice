@@ -61,3 +61,8 @@ export type Teste = Prisma.TesteModel
  * 
  */
 export type Planos = Prisma.PlanosModel
+/**
+ * Model UsuarioTarefa
+ * 
+ */
+export type UsuarioTarefa = Prisma.UsuarioTarefaModel

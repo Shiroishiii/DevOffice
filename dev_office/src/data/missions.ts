@@ -1,6 +1,9 @@
 export type MissionStatus = 'in-progress' | 'available' | 'locked'
 
 export type Mission = {
+  ponto: any
+  descricao: ReactNode
+  titulo: ReactNode
   id: string
   status: MissionStatus
   statusLabel: string

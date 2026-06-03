@@ -8,43 +8,48 @@ datasource db {
 }
 
 model Usuario {
-  id        Int                @id @default(autoincrement())
-  email     String             @unique
-  nome      String?
+  id        Int                 @id @default(autoincrement())
+  email     String              @unique
+  nome      String
   senha     String
-  planos_id Int?
+  ponto      Int                @default(0)
+
+  planos_id Int
+  planos    Planos @relation(fields: [planos_id], references: [id])
+
   empresa   EmpresasExistentes
-  tarefas   Tarefa[]
-  planos    Planos?            @relation(fields: [planos_id], references: [id])
+  tarefas  UsuarioTarefa[]
 
   @@map("usuario")
 }
 
 model Tarefa {
-  id             Int          @id @default(autoincrement())
-  titulo         String
-  descricao      String
-  status         StatusTarefa @default(PENDENTE)
-  codigoBase     String
-  dataVencimento DateTime
-  funcaoEsperada String
-  usuario_id     Int?
-  xp             Int          @default(50)
-  usuario        Usuario?     @relation(fields: [usuario_id], references: [id])
-  testes         Teste[]
+  id              Int          @id @default(autoincrement())
+  titulo          String
+  descricao       String
+  funcaoEsperada  String
+  codigoBase      String       @db.Text
+
+  ponto              Int          @default(50)
+
+  testes          Teste[]
+  tarefasUsuarios UsuarioTarefa[]
+
+  dataVencimento  DateTime
+  status          StatusTarefa @default(PENDENTE)
 
   @@map("tarefa")
 }
 
 model Teste {
-  id       Int    @id @default(autoincrement())
-  entrada  Json
-  esperado Json
-  tarefaId Int
-  tarefa   Tarefa @relation(fields: [tarefaId], references: [id])
-
+  id        Int  @id @default(autoincrement())
+  entrada   Json
+  esperado  Json
+  tarefaId  Int
+  tarefa    Tarefa @relation(fields: [tarefaId], references: [id])
   @@map("teste")
 }
+
 
 model Planos {
   id        Int       @id @default(autoincrement())
@@ -54,19 +59,19 @@ model Planos {
   @@map("planos")
 }
 
-enum StatusTarefa {
-  PENDENTE
-  CONCLUIDO
-}
+model UsuarioTarefa {
+  id             Int       @id @default(autoincrement())
 
-enum TipoPlano {
-  Basico
-  Standard
-  Premium
-}
+  usuarioId      Int
+  tarefaId       Int
 
-enum EmpresasExistentes {
-  HardCode
-  gamingColdest
-  GreeCode
+  concluida      Boolean   @default(false)
+  dataConclusao  DateTime?
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  tarefa  Tarefa  @relation(fields: [tarefaId], references: [id])
+
+  @@unique([usuarioId, tarefaId])
+
+  @@map("usuario_tarefa")
 }
