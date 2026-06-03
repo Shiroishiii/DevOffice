@@ -34,16 +34,15 @@ GreeCode
 model Usuario {
   id        Int                 @id @default(autoincrement())
   email     String              @unique
-  nome      String?
+  nome      String
   senha     String
-  planos_id Int?
-  planos    Planos?   @relation(fields: [planos_id], references: [id])
-  empresas  Empresa[]
+  ponto      Int                @default(0)
 
   planos_id Int
   planos    Planos              @relation(fields: [planos_id], references: [id])
 
   empresa   EmpresasExistentes
+  tarefas  UsuarioTarefa[]
 
   @@map("usuario")
 }
@@ -58,15 +57,14 @@ model Tarefa {
 
   codigoBase      String       @db.Text
 
-  xp              Int          @default(50)
+  ponto              Int          @default(50)
 
   testes          Teste[]
+  tarefasUsuarios UsuarioTarefa[]
 
   dataVencimento  DateTime
 
   status          StatusTarefa @default(PENDENTE)
-  usuario_id      Int?
-  usuario         Usuario      @relation(fields: [usuario_id], references: [id])
 
   @@map("tarefa")
 }
@@ -89,4 +87,21 @@ model Planos {
   usuarios  Usuario[]
 
   @@map("planos")
+}
+
+model UsuarioTarefa {
+  id             Int       @id @default(autoincrement())
+
+  usuarioId      Int
+  tarefaId       Int
+
+  concluida      Boolean   @default(false)
+  dataConclusao  DateTime?
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  tarefa  Tarefa  @relation(fields: [tarefaId], references: [id])
+
+  @@unique([usuarioId, tarefaId])
+
+  @@map("usuario_tarefa")
 }

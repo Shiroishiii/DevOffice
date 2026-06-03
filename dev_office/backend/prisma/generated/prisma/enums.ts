@@ -24,3 +24,12 @@ export const TipoPlano = {
 } as const
 
 export type TipoPlano = (typeof TipoPlano)[keyof typeof TipoPlano]
+
+
+export const EmpresasExistentes = {
+  HardCode: 'HardCode',
+  gamingColdest: 'gamingColdest',
+  GreeCode: 'GreeCode'
+} as const
+
+export type EmpresasExistentes = (typeof EmpresasExistentes)[keyof typeof EmpresasExistentes]

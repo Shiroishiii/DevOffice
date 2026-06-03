@@ -1,47 +1,73 @@
 import "dotenv/config";
 import express from 'express';
-import { usuarioRouter } from './routes/UsuarioRoutes';
 import cors from "cors";
+import { tests } from "./utils/test";
+
+import { usuarioRouter } from './routes/UsuarioRoutes';
+import tarefaRouter from './routes/TarefaRoutes';
 
 const app = express();
-app.use(cors())
-app.use(express.json())
+
+app.use(cors());
+app.use(express.json());
+
 const port = 3000;
 
 app.get('/', (req, res) => {
-  console.log(req)
-  res.send("Hello world")
-})
+  res.send("Hello world");
+});
 
 app.post('/api/execute', async (req, res) => {
-  const { code } = req.body
+  const {
+    tarefaId,
+    funcaoEsperada,
+    code,
+  } = req.body;
 
   try {
-    const logs: string[] = []
+    const fn = new Function(`
+      ${code}
+      return ${funcaoEsperada};
+    `);
 
-    const consoleMock = {
-      log: (...args: unknown[]) => {
-        logs.push(args.join(' '))
-      },
+    const userFunction = fn();
+
+    const casos = tests[funcaoEsperada];
+
+    if (!casos) {
+      return res.status(400).json({
+        success: false,
+        output: 'Função não cadastrada.'
+      });
     }
 
-    const fn = new Function('console', code)
+    for (const teste of casos) {
+      const resultado = userFunction(...teste.input);
 
-    fn(consoleMock)
+      if (resultado !== teste.expected) {
+        return res.json({
+          success: false,
+          output: `❌ Falhou\nEsperado: ${teste.expected}\nRecebido: ${resultado}`
+        });
+      }
+    }
 
-    res.json({
-      output: logs.join('\n'),
-    })
+    return res.json({
+      success: true,
+      output: '✅ Todos os testes passaram!'
+    });
+
   } catch (error) {
-    res.json({
-      output: String(error),
-    })
+    return res.json({
+      success: false,
+      output: String(error)
+    });
   }
-})
+});
 
-app.use(usuarioRouter)
-
+// app.use(usuarioRouter);
+app.use('/tarefas', tarefaRouter);
 
 app.listen(port, () => {
-  console.log("Servidor ta de pé :p")
-})
+  console.log("Servidor ta de pé :p");
+});
