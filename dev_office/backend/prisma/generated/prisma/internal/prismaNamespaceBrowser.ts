@@ -95,7 +95,8 @@ export const TarefaScalarFieldEnum = {
   codigoBase: 'codigoBase',
   ponto: 'ponto',
   dataVencimento: 'dataVencimento',
-  status: 'status'
+  status: 'status',
+  usuario_id: 'usuario_id'
 } as const
 
 export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof TarefaScalarFieldEnum]
