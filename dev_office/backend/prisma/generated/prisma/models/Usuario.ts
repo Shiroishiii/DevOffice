@@ -430,10 +430,6 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type EnumEmpresasExistentesFieldUpdateOperationsInput = {
-  set?: $Enums.EmpresasExistentes
-}
-
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number

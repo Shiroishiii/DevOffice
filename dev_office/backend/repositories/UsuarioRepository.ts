@@ -46,16 +46,25 @@ export class UsuarioRepository {
     return this.prisma.usuario.findMany();
   }
 
-  async criarUsuario(dadosUsuario: Partial<Usuario>): Promise<Usuario> {
+ async criarUsuario(dadosUsuario: any) {
   const senhaHash = await bcrypt.hash(
-    dadosUsuario.senha as string,
+    dadosUsuario.senha,
     10
   );
+
   return this.prisma.usuario.create({
     data: {
-      ...dadosUsuario,
-      senha: senhaHash
-    } as Usuario
+      nome: dadosUsuario.nome,
+      email: dadosUsuario.email,
+      senha: senhaHash,
+      empresa: dadosUsuario.empresa,
+
+      planos: {
+        connect: {
+          id: 1
+        }
+      }
+    }
   });
 }
 

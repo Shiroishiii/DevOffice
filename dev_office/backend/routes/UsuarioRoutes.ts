@@ -8,7 +8,7 @@ usuarioRouter.get("/", usuarioController.listarUsuarios);
 
 usuarioRouter.get("/:id", usuarioController.getUsuarioId);
 
-usuarioRouter.post("/", usuarioController.criarUsuario);
+usuarioRouter.post("/cadastro", usuarioController.criarUsuario);
 
 usuarioRouter.post("/login", authController.login);
 
