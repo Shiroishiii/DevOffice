@@ -39,7 +39,7 @@ model Usuario {
   ponto      Int                @default(0)
 
   planos_id Int
-  planos    Planos              @relation(fields: [planos_id], references: [id])
+  planos    Planos @relation(fields: [planos_id], references: [id])
 
   empresa   EmpresasExistentes
   tarefas  UsuarioTarefa[]
@@ -49,12 +49,9 @@ model Usuario {
 
 model Tarefa {
   id              Int          @id @default(autoincrement())
-
   titulo          String
   descricao       String
-
   funcaoEsperada  String
-
   codigoBase      String       @db.Text
 
   ponto              Int          @default(50)
@@ -63,7 +60,6 @@ model Tarefa {
   tarefasUsuarios UsuarioTarefa[]
 
   dataVencimento  DateTime
-
   status          StatusTarefa @default(PENDENTE)
 
   @@map("tarefa")
@@ -71,15 +67,13 @@ model Tarefa {
 
 model Teste {
   id        Int  @id @default(autoincrement())
-
   entrada   Json
   esperado  Json
-
   tarefaId  Int
   tarefa    Tarefa @relation(fields: [tarefaId], references: [id])
-
   @@map("teste")
 }
+
 
 model Planos {
   id        Int       @id @default(autoincrement())
