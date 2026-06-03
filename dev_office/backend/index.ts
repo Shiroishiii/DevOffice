@@ -66,6 +66,7 @@ app.post('/api/execute', async (req, res) => {
 });
 
 // app.use(usuarioRouter);
+app.use('/', usuarioRouter)
 app.use('/tarefas', tarefaRouter);
 
 app.listen(port, () => {

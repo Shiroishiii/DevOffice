@@ -45,7 +45,6 @@ export type TarefaMinAggregateOutputType = {
   ponto: number | null
   dataVencimento: Date | null
   status: $Enums.StatusTarefa | null
-  usuario_id: number | null
 }
 
 export type TarefaMaxAggregateOutputType = {
@@ -57,7 +56,6 @@ export type TarefaMaxAggregateOutputType = {
   ponto: number | null
   dataVencimento: Date | null
   status: $Enums.StatusTarefa | null
-  usuario_id: number | null
 }
 
 export type TarefaCountAggregateOutputType = {
@@ -69,7 +67,6 @@ export type TarefaCountAggregateOutputType = {
   ponto: number
   dataVencimento: number
   status: number
-  usuario_id: number
   _all: number
 }
 
@@ -93,7 +90,6 @@ export type TarefaMinAggregateInputType = {
   ponto?: true
   dataVencimento?: true
   status?: true
-  usuario_id?: true
 }
 
 export type TarefaMaxAggregateInputType = {
@@ -105,7 +101,6 @@ export type TarefaMaxAggregateInputType = {
   ponto?: true
   dataVencimento?: true
   status?: true
-  usuario_id?: true
 }
 
 export type TarefaCountAggregateInputType = {
@@ -117,7 +112,6 @@ export type TarefaCountAggregateInputType = {
   ponto?: true
   dataVencimento?: true
   status?: true
-  usuario_id?: true
   _all?: true
 }
 
@@ -216,7 +210,6 @@ export type TarefaGroupByOutputType = {
   ponto: number
   dataVencimento: Date
   status: $Enums.StatusTarefa
-  usuario_id: number | null
   _count: TarefaCountAggregateOutputType | null
   _avg: TarefaAvgAggregateOutputType | null
   _sum: TarefaSumAggregateOutputType | null
@@ -251,7 +244,6 @@ export type TarefaWhereInput = {
   ponto?: Prisma.IntFilter<"Tarefa"> | number
   dataVencimento?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
   status?: Prisma.EnumStatusTarefaFilter<"Tarefa"> | $Enums.StatusTarefa
-  usuario_id?: Prisma.IntNullableFilter<"Tarefa"> | number | null
   testes?: Prisma.TesteListRelationFilter
   tarefasUsuarios?: Prisma.UsuarioTarefaListRelationFilter
 }
@@ -265,7 +257,6 @@ export type TarefaOrderByWithRelationInput = {
   ponto?: Prisma.SortOrder
   dataVencimento?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  usuario_id?: Prisma.SortOrderInput | Prisma.SortOrder
   testes?: Prisma.TesteOrderByRelationAggregateInput
   tarefasUsuarios?: Prisma.UsuarioTarefaOrderByRelationAggregateInput
 }
@@ -282,7 +273,6 @@ export type TarefaWhereUniqueInput = Prisma.AtLeast<{
   ponto?: Prisma.IntFilter<"Tarefa"> | number
   dataVencimento?: Prisma.DateTimeFilter<"Tarefa"> | Date | string
   status?: Prisma.EnumStatusTarefaFilter<"Tarefa"> | $Enums.StatusTarefa
-  usuario_id?: Prisma.IntNullableFilter<"Tarefa"> | number | null
   testes?: Prisma.TesteListRelationFilter
   tarefasUsuarios?: Prisma.UsuarioTarefaListRelationFilter
 }, "id">
@@ -296,7 +286,6 @@ export type TarefaOrderByWithAggregationInput = {
   ponto?: Prisma.SortOrder
   dataVencimento?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  usuario_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TarefaCountOrderByAggregateInput
   _avg?: Prisma.TarefaAvgOrderByAggregateInput
   _max?: Prisma.TarefaMaxOrderByAggregateInput
@@ -316,7 +305,6 @@ export type TarefaScalarWhereWithAggregatesInput = {
   ponto?: Prisma.IntWithAggregatesFilter<"Tarefa"> | number
   dataVencimento?: Prisma.DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
   status?: Prisma.EnumStatusTarefaWithAggregatesFilter<"Tarefa"> | $Enums.StatusTarefa
-  usuario_id?: Prisma.IntNullableWithAggregatesFilter<"Tarefa"> | number | null
 }
 
 export type TarefaCreateInput = {
@@ -340,7 +328,6 @@ export type TarefaUncheckedCreateInput = {
   ponto?: number
   dataVencimento: Date | string
   status?: $Enums.StatusTarefa
-  usuario_id?: number | null
   testes?: Prisma.TesteUncheckedCreateNestedManyWithoutTarefaInput
   tarefasUsuarios?: Prisma.UsuarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
 }
@@ -366,7 +353,6 @@ export type TarefaUncheckedUpdateInput = {
   ponto?: Prisma.IntFieldUpdateOperationsInput | number
   dataVencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
-  usuario_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   testes?: Prisma.TesteUncheckedUpdateManyWithoutTarefaNestedInput
   tarefasUsuarios?: Prisma.UsuarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
 }
@@ -380,7 +366,6 @@ export type TarefaCreateManyInput = {
   ponto?: number
   dataVencimento: Date | string
   status?: $Enums.StatusTarefa
-  usuario_id?: number | null
 }
 
 export type TarefaUpdateManyMutationInput = {
@@ -402,17 +387,6 @@ export type TarefaUncheckedUpdateManyInput = {
   ponto?: Prisma.IntFieldUpdateOperationsInput | number
   dataVencimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
-  usuario_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-}
-
-export type TarefaListRelationFilter = {
-  every?: Prisma.TarefaWhereInput
-  some?: Prisma.TarefaWhereInput
-  none?: Prisma.TarefaWhereInput
-}
-
-export type TarefaOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type TarefaCountOrderByAggregateInput = {
@@ -424,7 +398,6 @@ export type TarefaCountOrderByAggregateInput = {
   ponto?: Prisma.SortOrder
   dataVencimento?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  usuario_id?: Prisma.SortOrder
 }
 
 export type TarefaAvgOrderByAggregateInput = {
@@ -441,7 +414,6 @@ export type TarefaMaxOrderByAggregateInput = {
   ponto?: Prisma.SortOrder
   dataVencimento?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  usuario_id?: Prisma.SortOrder
 }
 
 export type TarefaMinOrderByAggregateInput = {
@@ -453,7 +425,6 @@ export type TarefaMinOrderByAggregateInput = {
   ponto?: Prisma.SortOrder
   dataVencimento?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  usuario_id?: Prisma.SortOrder
 }
 
 export type TarefaSumOrderByAggregateInput = {
@@ -464,48 +435,6 @@ export type TarefaSumOrderByAggregateInput = {
 export type TarefaScalarRelationFilter = {
   is?: Prisma.TarefaWhereInput
   isNot?: Prisma.TarefaWhereInput
-}
-
-export type TarefaCreateNestedManyWithoutUsuarioInput = {
-  create?: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput> | Prisma.TarefaCreateWithoutUsuarioInput[] | Prisma.TarefaUncheckedCreateWithoutUsuarioInput[]
-  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutUsuarioInput | Prisma.TarefaCreateOrConnectWithoutUsuarioInput[]
-  createMany?: Prisma.TarefaCreateManyUsuarioInputEnvelope
-  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-}
-
-export type TarefaUncheckedCreateNestedManyWithoutUsuarioInput = {
-  create?: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput> | Prisma.TarefaCreateWithoutUsuarioInput[] | Prisma.TarefaUncheckedCreateWithoutUsuarioInput[]
-  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutUsuarioInput | Prisma.TarefaCreateOrConnectWithoutUsuarioInput[]
-  createMany?: Prisma.TarefaCreateManyUsuarioInputEnvelope
-  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-}
-
-export type TarefaUpdateManyWithoutUsuarioNestedInput = {
-  create?: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput> | Prisma.TarefaCreateWithoutUsuarioInput[] | Prisma.TarefaUncheckedCreateWithoutUsuarioInput[]
-  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutUsuarioInput | Prisma.TarefaCreateOrConnectWithoutUsuarioInput[]
-  upsert?: Prisma.TarefaUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.TarefaUpsertWithWhereUniqueWithoutUsuarioInput[]
-  createMany?: Prisma.TarefaCreateManyUsuarioInputEnvelope
-  set?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-  disconnect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-  delete?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-  update?: Prisma.TarefaUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.TarefaUpdateWithWhereUniqueWithoutUsuarioInput[]
-  updateMany?: Prisma.TarefaUpdateManyWithWhereWithoutUsuarioInput | Prisma.TarefaUpdateManyWithWhereWithoutUsuarioInput[]
-  deleteMany?: Prisma.TarefaScalarWhereInput | Prisma.TarefaScalarWhereInput[]
-}
-
-export type TarefaUncheckedUpdateManyWithoutUsuarioNestedInput = {
-  create?: Prisma.XOR<Prisma.TarefaCreateWithoutUsuarioInput, Prisma.TarefaUncheckedCreateWithoutUsuarioInput> | Prisma.TarefaCreateWithoutUsuarioInput[] | Prisma.TarefaUncheckedCreateWithoutUsuarioInput[]
-  connectOrCreate?: Prisma.TarefaCreateOrConnectWithoutUsuarioInput | Prisma.TarefaCreateOrConnectWithoutUsuarioInput[]
-  upsert?: Prisma.TarefaUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.TarefaUpsertWithWhereUniqueWithoutUsuarioInput[]
-  createMany?: Prisma.TarefaCreateManyUsuarioInputEnvelope
-  set?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-  disconnect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-  delete?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-  connect?: Prisma.TarefaWhereUniqueInput | Prisma.TarefaWhereUniqueInput[]
-  update?: Prisma.TarefaUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.TarefaUpdateWithWhereUniqueWithoutUsuarioInput[]
-  updateMany?: Prisma.TarefaUpdateManyWithWhereWithoutUsuarioInput | Prisma.TarefaUpdateManyWithWhereWithoutUsuarioInput[]
-  deleteMany?: Prisma.TarefaScalarWhereInput | Prisma.TarefaScalarWhereInput[]
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -717,7 +646,6 @@ export type TarefaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   ponto?: boolean
   dataVencimento?: boolean
   status?: boolean
-  usuario_id?: boolean
   testes?: boolean | Prisma.Tarefa$testesArgs<ExtArgs>
   tarefasUsuarios?: boolean | Prisma.Tarefa$tarefasUsuariosArgs<ExtArgs>
   _count?: boolean | Prisma.TarefaCountOutputTypeDefaultArgs<ExtArgs>
@@ -732,8 +660,6 @@ export type TarefaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   ponto?: boolean
   dataVencimento?: boolean
   status?: boolean
-  usuario_id?: boolean
-  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
 }, ExtArgs["result"]["tarefa"]>
 
 export type TarefaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -745,8 +671,6 @@ export type TarefaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   ponto?: boolean
   dataVencimento?: boolean
   status?: boolean
-  usuario_id?: boolean
-  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
 }, ExtArgs["result"]["tarefa"]>
 
 export type TarefaSelectScalar = {
@@ -758,7 +682,6 @@ export type TarefaSelectScalar = {
   ponto?: boolean
   dataVencimento?: boolean
   status?: boolean
-  usuario_id?: boolean
 }
 
 export type TarefaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descricao" | "funcaoEsperada" | "codigoBase" | "ponto" | "dataVencimento" | "status", ExtArgs["result"]["tarefa"]>
@@ -767,12 +690,8 @@ export type TarefaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   tarefasUsuarios?: boolean | Prisma.Tarefa$tarefasUsuariosArgs<ExtArgs>
   _count?: boolean | Prisma.TarefaCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type TarefaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
-}
-export type TarefaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usuario?: boolean | Prisma.Tarefa$usuarioArgs<ExtArgs>
-}
+export type TarefaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type TarefaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $TarefaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tarefa"
@@ -789,7 +708,6 @@ export type $TarefaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     ponto: number
     dataVencimento: Date
     status: $Enums.StatusTarefa
-    usuario_id: number | null
   }, ExtArgs["result"]["tarefa"]>
   composites: {}
 }
@@ -1223,7 +1141,6 @@ export interface TarefaFieldRefs {
   readonly ponto: Prisma.FieldRef<"Tarefa", 'Int'>
   readonly dataVencimento: Prisma.FieldRef<"Tarefa", 'DateTime'>
   readonly status: Prisma.FieldRef<"Tarefa", 'StatusTarefa'>
-  readonly usuario_id: Prisma.FieldRef<"Tarefa", 'Int'>
 }
     
 
@@ -1478,10 +1395,6 @@ export type TarefaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.TarefaCreateManyInput | Prisma.TarefaCreateManyInput[]
   skipDuplicates?: boolean
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TarefaIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1552,10 +1465,6 @@ export type TarefaUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Tarefas to update.
    */
   limit?: number
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TarefaIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
